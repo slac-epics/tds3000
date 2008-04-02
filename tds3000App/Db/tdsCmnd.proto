@@ -1,0 +1,63 @@
+Terminator=LF;
+
+INIT1="*cls; :DAT:ENC RIB; :HOR:RECORDL 500;";
+INIT2=" :HEAD OFF; :VERB ON; :DAT:STAR 1; :DAT:STOP 500";
+INITIALIZE=${INIT1}${INIT2};
+
+rTimeB{  out "horizontal:main:scale?"; in "%f";}
+wTimeB{  out "horizontal:main:scale %e"; @init{ rTimeB;}}
+rTimeD{  out "horizontal:delay:time?"; in "%f";}
+wTimeD{  out "horizontal:delay:time %e"; @init{ rTimeD;}}
+rTimeR{  out "horizontal:trigger:position?"; in "%f";}
+wTimeR{  out "horizontal:trigger:position %f"; @init{ rTimeR;}}
+rTrigL{  out "trigger:a:level?"; in "%f";}
+wTrigL{  out "trigger:a:level %f"; @init{ rTrigL;}}
+rHoldo{  out "trigger:a:holdoff:time?"; in "%f";}
+wHoldo{  out "trigger:a:holdoff:time %f"; @init{ rHoldo;}}
+rTrigM{  out "trigger:a:mode?"; in "%{NORMAL|AUTO}";}
+wTrigM{  out "trigger:a:mode %{NORM|AUTO}"; @init{ rTrigM;}}
+rTrigS{  out "trigger:a:edge:source?"; in "%{CH1|CH2|CH3|CH4|LINE|VERTICAL|EXT10|EXT}";}
+wTrigS{  out "trigger:a:edge:source %{CH1|CH2|CH3|CH4|LINE|VERTICAL|EXT10|EXT}";
+  @init{ rTrigS;}}
+rTrigSl{ out "trigger:a:edge:slope?"; in "%{FALL|RISE}";}
+wTrigSl{ out "trigger:a:edge:slope %{FALL|RISE}"; @init{ rTrigSl;}}
+rAcqSt{  out "acquire:state?"; in "%{0|1}";}
+rTrigSt{ out "trigger:state?"; in "%{AUTO|ARMED|READY|SAVE|TRIGGER}";}
+wRun{    out "acquire:state run";}
+wStop{   out "acquire:state stop";}
+wInit{   out "${INITIALIZE}";}
+wAutoS{  out "autoset execute";}
+rAcqStA{ out "acquire:stopafter?"; in "%{RUNSTOP|SEQUENCE}";}
+wAcqStA{ out "acquire:stopafter %{RUNSTOP|SEQUENCE}"; @init{ rAcqStA;}}
+rFPLock{ out "lock?"; in "%{NONE|ALL}";}
+wFPLock{ out "lock %{NONE|ALL}"; @init{ rFPLock;}}
+rBusy{   out "busy?"; in "%{0|1}";}
+wReset{  out "*RST";}
+rSetup{  out "set?"; in "%4000c";}
+wSetup{  out "set %4000c";}
+wRecal{  out "*RCL %d";}
+wStore{  out "*SAV %d";}
+rDataE{  out "data:encdg?"; in "%s";}
+rRecL{   out "HOR:RECORDL?"; in "%u";}
+wRecL{   out "HOR:RECORDL %u"; @init{ rRecL;}}
+rHead{   out "header?"; in "%s";}
+rDSourc{ out "data:source?"; in "%s";}
+rDWidth{ out "data:width?"; in "%i";}
+wDWidth{ out "data:width %i"; @init{ rDWidth;}}
+rDStart{ out "data:start?"; in "%i";}
+wDStart{ out "data:start %i"; @init{ rDStart;}}
+rDStop{  out "data:stop?"; in "%i";}
+wDStop{  out "data:stop %i"; @init{ rDStop;}}
+rDEncd{  out "data:encdg?"; in "%{ASCII|RIBINARY|RPBINARY|SRIBINARY|SRPBINARY}";}
+wDEncd{  out "data:encdg %{ASCI|RIB|RPB|SRI|SRP}"; @init{ rDEncd;}}
+rDAutoC{ out "display:picture:autocontrast?"; in "%{0|1}";}
+wDAutoC{ out "display:picture:autocontrast %{OFF|ON}"; @init{ rDAutoC;}}
+rDBright{out "display:picture:brightness?"; in "%u";}
+wDBright{out "display:picture:brightness %u"; @init{ rDBright;}}
+rDPState{out "display:picture:state?"; in "%{0|1}";}
+wDPState{out "display:picture:state %{OFF|ON}"; @init{ rDPState;}}
+rDIntB{  out "display:intensity:backlight?"; in "%{HIGH|MEDIUM:LOW}";}
+wDIntB{  out "dispplay:intensity:backlight %{HIGH|MEDIUM|LOW}"; @init{ rDIntB;}}
+rDIntWF{ out "display:intensity:waveform?"; in "%u";}
+wDIntWF{ out "display:intensity:waveform %u"; @init{ rDIntWF;}}
+wDSour{  out "DAT:SOU CH1";}

@@ -1,0 +1,620 @@
+#----- Soft Channel records for house keeping ------
+record( calc, "$(P)1PER_SECOND"){
+  field( DESC, "count per second")
+  field( SCAN, "1 second")
+  field( CALC, "A+B")
+  field( INPA, "$(P)1PER_SECOND.VAL  NPP NMS")
+  field( INPB, "1")
+  field( EGU,  "Counts")
+  field( VAL, "1")
+}
+record( calc, "$(P)COUNT_GETS"){
+  field( DESC, "count histogram gets")
+  field( SCAN, "Passive")
+  field( CALC, "A+B")
+  field( INPA, "$(P)COUNT_GETS.VAL  NPP NMS")
+  field( INPB, "1")
+  field( EGU,  "Counts")
+  field( VAL, "1")
+}
+record( calc, "$(P)COUNT_RATE"){
+  field( DESC, "counting rate")
+  field( SCAN, "5 second")
+  field( CALC, "A/(B>0?B:1)")
+  field( INPA, "$(P)COUNT_GETS.VAL  NPP NMS")
+  field( INPB, "$(P)1PER_SECOND.VAL NPP NMS")
+  field( PREC, "1")
+  field( EGU,  "ct/s")
+}
+record( calc, "$(P)CLR_RATE"){
+  field( DESC, "reset rate counters")
+  field( CALC, "1-A")
+  field( INPA, "$(P)CLR_RATE.VAL NPP NMS")
+  field( VAL,  "0")
+}
+record( stringin, "$(P)START_TIME"){
+  field( DESC, "start date and time")
+  field( DTYP, "Soft Timestamp")
+  field( PINI, "YES")
+  field( INP,  "@%m/%d/%Y %H:%M:%S")
+}
+record( stringin, "$(P)CURR_TIME"){
+  field( DESC, "current date and time")
+  field( DTYP, "Soft Timestamp")
+  field( SCAN, "1 second")
+  field( INP,  "@%m/%d/%Y %H:%M:%S")
+}
+#----------------- scope commands -------------------------------------
+record( calc, "$(P)COUNT"){
+  field( DESC, "Counter")
+  field( SCAN, "$(SCAN)")
+  field( CALC, "(A<B)?(A+C):D")
+  field( INPA, "$(P)COUNT.VAL  NPP NMS")
+  field( INPB, "$(MAX)")
+  field( INPC, "1")
+  field( INPD, "0")
+  field( EGU,  "Counts")
+}
+record( ai, "$(P)R_TIME_DELAY"){
+  field( DESC, "Read Delay")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rTimeD L$(L) $(A)")
+  field( PREC, "4")
+  field( EGU,  "s")
+}
+record( ao, "$(P)W_TIME_DELAY") {
+  field( DESC, "set Time Delay")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wTimeD L$(L) $(A)")
+  field( FLNK, "$(P)R_TIME_DELAY.PROC  PP MS")
+  field( OROC, "0")
+  field( OIF,  "Full")
+  field( PREC, "3")
+  field( LINR, "LINEAR")
+  field( EGUF, "0.1")
+  field( EGUL, "-0.1")
+  field( EGU,  "sec")
+  field( EOFF, "0")
+  field( DRVH, "0.1")
+  field( DRVL, "-0.1")
+  field( HOPR, "0.1")
+  field( LOPR, "-0.1")
+}
+record( ai, "$(P)R_TIME_DIV"){
+  field( DESC, "Horizontal Scale")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rTimeB L$(L) $(A)")
+  field( PREC, "2")
+  field( EGU,  "s/div")
+  field( PINI, "YES")
+}
+record( mbbo, "$(P)W_TIME_DIV_A"){
+  field( DESC, "Select Time/Div Magnitude")
+  field( DTYP, "Soft Channel")
+  field( FLNK, "$(P)C_TIME_DIV.PROC  PP NMS")
+  field( DOL,  "3")
+  field( NOBT, "32")
+  field( ZRVL, "0x1")
+  field( ONVL, "0x2")
+  field( TWVL, "0x4")
+  field( THVL, "0xa")
+  field( FRVL, "0x14")
+  field( FVVL, "0x28")
+  field( SXVL, "0x64")
+  field( SVVL, "0xc8")
+  field( EIVL, "0x190")
+  field( ZRST, "1")
+  field( ONST, "2")
+  field( TWST, "4")
+  field( THST, "10")
+  field( FRST, "20")
+  field( FVST, "40")
+  field( SXST, "100")
+  field( SVST, "200")
+  field( EIST, "400")
+}
+record( calc, "$(P)C_TIME_DIV"){
+  field( DESC, "Calc Time Base")
+  field( FLNK, "$(P)W_TIME_DIV.PROC  PP NMS")
+  field( CALC, "A*10**(B*(-1))")
+  field( INPA, "$(P)W_TIME_DIV_A.RVAL  PP NMS")
+  field( INPB, "$(P)W_TIME_DIV_B.RVAL  PP NMS")
+  field( EGU,  "s")
+  field( PREC, "2")
+  field( HOPR, "10")
+  field( LOPR, "1.0e-09")
+}
+record( mbbo, "$(P)W_TIME_DIV_B") {
+  field( DESC, "Select Time/Div unit")
+  field( DTYP, "Soft Channel")
+  field( FLNK, "$(P)C_TIME_DIV.PROC  PP NMS")
+  field( DOL,  "1")
+  field( NOBT, "32")
+  field( ZRVL, "0x9")
+  field( ONVL, "0x6")
+  field( TWVL, "0x3")
+  field( THVL, "0x0")
+  field( ZRST, "ns")
+  field( ONST, "us")
+  field( TWST, "ms")
+  field( THST, "s")
+}
+record( ao, "$(P)W_TIME_DIV") {
+  field( DESC, "Set Time Base/Div")
+  field( DTYP, "stream")
+  field( FLNK, "$(P)R_TIME_DIV.VAL  PP NMS")
+  field( OUT,  "@tdsCmnd.proto wTimeB L$(L) $(A)")
+  field( DOL,  "$(P)C_TIME_DIV.VAL  NPP NMS")
+  field( OMSL, "closed_loop")
+  field( OIF,  "Full")
+  field( LINR, "NO CONVERSION")
+  field( EGUF, "10")
+  field( EGUL, "1.0e-09")
+  field( EGU,  "s")
+  field( EOFF, "0")
+  field( DRVH, "10")
+  field( DRVL, "1.0e-09")
+  field( HOPR, "10")
+  field( LOPR, "1.0e-09")
+}
+record( ai, "$(P)R_TIME_REF"){
+  field( DESC, "read time reference")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rTimeR L$(L) $(A)")
+  field( PREC, "2")
+  field( EGU,  "%")
+  field( PINI, "YES")
+}
+record( ao, "$(P)W_TIME_REF"){
+  field( DESC, "write time reference")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wTimeR L$(L) $(A)")
+  field( FLNK, "$(P)R_TIME_REF")
+  field( PREC, "0")
+  field( EGU,  "%")
+  field( DRVH, "100")
+  field( DRVL, "0")
+  field( HOPR, "100")
+  field( LOPR, "0")
+}
+record( ai, "$(P)R_TRIG_LEV"){
+  field( DESC, "Read Trigger Leve;")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rTrigL L$(L) $(A)")
+  field( PREC, "2")
+  field( EGU,  "V")
+  field( HOPR, "100")
+  field( LOPR, "-100")
+  field( PINI, "YES")
+}
+record( ao, "$(P)W_TRIG_LEV"){
+  field( DESC, "Set Trig Level")
+  field( DTYP, "stream")
+  field( FLNK, "$(P)R_TRIG_LEV.PROC  PP MS")
+  field( OUT,  "@tdsCmnd.proto wTrigL L$(L) $(A)")
+  field( OROC, "0")
+  field( OIF,  "Full")
+  field( PREC, "3")
+  field( LINR, "LINEAR")
+  field( EGUF, "20")
+  field( EGUL, "-20")
+  field( EGU,  "V")
+  field( EOFF, "0")
+  field( DRVH, "20")
+  field( DRVL, "-20")
+  field( HOPR, "20")
+  field( LOPR, "-20")
+  field( ESLO, "0")
+}
+record( ai, "$(P)R_HOLDOFF"){
+  field( DESC, "Read holdoff time")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rHoldo L$(L) $(A)")
+  field( PREC, "2")
+  field( LINR, "NO CONVERSION")
+  field( EGUF, "0.35")
+  field( EGUL, "0")
+  field( EGU,  "V")
+  field( HOPR, "0.35")
+  field( LOPR, "0")
+  field( ASLO, "0")
+  field( ESLO, "0")
+  field( PINI, "YES")
+}
+record( ao, "$(P)W_HOLDOFF"){
+  field( DESC, "Set holdoff Time")
+  field( DTYP, "stream")
+  field( FLNK, "$(P)R_HOLDOFF.PROC  PP MS")
+  field( OUT,  "@tdsCmnd.proto wHoldo L$(L) $(A)")
+  field( OROC, "0")
+  field( OIF, "Full")
+  field( PREC, "3")
+  field( LINR, "LINEAR")
+  field( EGUF, "1")
+  field( EGUL, "4.0e-08")
+  field( EGU, "s")
+  field( EOFF, "0")
+  field( DRVH, "3.2e-04")
+  field( DRVL, "4.0e-08")
+  field( HOPR, "3.2e-04")
+  field( LOPR, "4.0e-08")
+}
+record( mbbi, "$(P)R_TRIG_MODE"){
+  field( DESC, "read trigger mode")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rTrigM L$(L) $(A)")
+  field( ZRVL, "0x0")
+  field( ONVL, "0x1")
+  field( ZRST, "NORM")
+  field( ONST, "AUTO")
+  field( PINI, "YES")
+}
+record( mbbo, "$(P)W_TRIG_MODE"){
+  field( DESC, "Set Trigger Mode")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wTrigM L$(L) $(A)")
+  field( FLNK, "$(P)R_TRIG_MODE")
+  field( ZRVL, "0x0")
+  field( ONVL, "0x1")
+  field( ZRST, "NORM")
+  field( ONST, "AUTO")
+}
+record( mbbi, "$(P)R_TRIG_SOUR"){
+  field( DESC, "read trigger source")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rTrigS L$(L) $(A)")
+  field( ZRVL, "0x0")
+  field( ONVL, "0x1")
+  field( TWVL, "0x2")
+  field( THVL, "0x3")
+  field( FRVL, "0x4")
+  field( FVVL, "0x5")
+  field( SXVL, "0x6")
+  field( SVVL, "0x7")
+  field( ZRST, "Ch1")
+  field( ONST, "Ch2")
+  field( TWST, "Ch3")
+  field( THST, "Ch4")
+  field( FRST, "Line")
+  field( FVST, "Ch1")
+  field( SXST, "Ext10")
+  field( SVST, "Ext")
+  field( PINI, "YES")
+}
+record( mbbo, "$(P)W_TRIG_SOUR"){
+  field( DESC, "Select Trigger Source")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wTrigS L$(L) $(A)")
+  field( FLNK, "$(P)R_TRIG_SOUR")
+  field( ZRVL, "0x0")
+  field( ONVL, "0x1")
+  field( TWVL, "0x2")
+  field( THVL, "0x3")
+  field( FRVL, "0x4")
+  field( FVVL, "0x5")
+  field( SXVL, "0x6")
+  field( SVVL, "0x7")
+  field( ZRST, "Chan1")
+  field( ONST, "Chan2")
+  field( TWST, "Chan3")
+  field( THST, "Chan4")
+  field( FRST, "LINE")
+  field( FVST, "VERTICAL")
+  field( SXST, "EXT10")
+  field( SVST, "EXT")
+}
+record( mbbi, "$(P)R_TRIG_SLOPE"){
+  field( DESC, "read trigger slope")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rTrigSl L$(L) $(A)")
+  field( ZRVL, "0x0")
+  field( ONVL, "0x1")
+  field( ZRST, "FALL")
+  field( ONST, "RISE")
+  field( PINI, "YES")
+}
+record( mbbo, "$(P)W_TRIG_SLOPE"){
+  field( DESC, "Select Trigger Slope")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wTrigSl L$(L) $(A)")
+  field( FLNK, "$(P)R_TRIG_SLOPE")
+  field( ZRVL, "0x0")
+  field( ONVL, "0x1")
+  field( ZRST, "FALL")
+  field( ONST, "RISE")
+}
+record( bi, "$(P)R_ACQ_STAT"){
+  field( DESC, "Acquire status")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rAcqSt L$(L) $(A)")
+  field( ZNAM, "STOP")
+  field( ONAM, "RUN")
+  field( PINI, "YES")
+}
+record( mbbi, "$(P)R_TRIG_STATE"){
+  field( DESC, "Trigger State")
+  field( SCAN, "1 second")
+  field( DTYP, "stream")
+  field( NOBT, "4")
+  field( INP,  "@tdsCmnd.proto rTrigSt L$(L) $(A)")
+  field( ZRVL, "0")
+  field( ONVL, "1")
+  field( TWVL, "2")
+  field( THVL, "3")
+  field( FRVL, "4")
+  field( ZRST, "Auto")
+  field( ONST, "Armed")
+  field( TWST, "Ready")
+  field( THST, "Save")
+  field( FRST, "Trig'd")
+  field( PINI, "YES")
+}
+record( bo, "$(P)RUN"){
+  field( DESC, "Trigger Scope")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wRun L$(L) $(A)")
+  field( ONAM, "Run")
+  field( FLNK, "$(P)R_ACQ_STAT")
+}
+record( bo, "$(P)STOP"){
+  field( DESC, "stop acquisition")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wStop L$(L) $(A)")
+  field( ONAM, "Stop")
+  field( FLNK, "$(P)R_ACQ_STAT")
+}
+record( bo, "$(P)W_INIT"){
+  field( DESC, "Init instr for waveform")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wInit L$(L) $(A)")
+  field( ZNAM, "init")
+  field( ONAM, "init")
+}
+record( bi, "$(P)R_FP_LOCK"){
+  field( DESC, "Front Panel Lock stat")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rFPLock L$(L) $(A)")
+  field( ZNAM, "Unlock")
+  field( ONAM, "Lock")
+  field( PINI, "YES")
+}
+record( bo, "$(P)W_FP_LOCK"){
+  field( DESC, "Lock Front panel")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wFPLock L$(L) $(A)")
+  field( ZNAM, "Unlock")
+  field( ONAM, "Lock")
+}
+record( bi, "$(P)R_BUSY"){
+  field( DESC, "Scope Busy status")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rBusy L$(L) $(A)")
+  field( ZNAM, "Not Busy")
+  field( ONAM, "Busy")
+}
+record( bo, "$(P)W_RESET"){
+  field( DESC, "Reset Scope")
+  field( DTYP, "stream")
+  field( FLNK, "$(P)W_INIT.PROC  PP NMS")
+  field( OUT,  "@tdsCmnd.proto wReset L$(L) $(A)")
+  field( ONAM, "Reset")
+}
+record( waveform, "$(P)SAV_PATH"){
+  field( DESC, "save/restore file path")
+  field( FTVL, "CHAR")
+  field( NELM, "128")
+}
+record( waveform, "$(P)R_SETUP"){
+  field( DESC, "Scope Setup Data")
+  field( DTYP, "stream")
+  field( PREC, "1")
+  field( INP,  "@tdsCmnd.proto rSetup L$(L) $(A)")
+  field( HOPR, "255")
+  field( LOPR, "0")
+  field( NELM, "4000")
+  field( FTVL, "UCHAR")
+}
+record( calc, "$(P)RESTORE"){
+  field( DESC, "trigger config restore")
+  field( CALC, "1-A")
+  field( INPA, "$(P)RESTORE.VAL NPP NMS")
+  field( VAL,  "0")
+}
+record( waveform, "$(P)W_SETUP"){
+  field( DESC, "Scope Setup Data")
+  field( DTYP, "stream")
+  field( PREC, "1")
+  field( INP,  "@tdsCmnd.proto wSetup L$(L) $(A)")
+  field( HOPR, "255")
+  field( LOPR, "0")
+  field( NELM, "4000")
+  field( FTVL, "UCHAR")
+}
+record( longout, "$(P)W_ST_RECALL"){
+  field( DESC, "Store/Recall index")
+  field( DTYP, "Soft Channel")
+  field( DRVL, "1")
+  field( DRVH, "10")
+  field( LOPR, "1")
+  field( HOPR, "10")
+  field( VAL,  "1")
+}
+record( longout, "$(P)W_RECALL"){
+  field( DESC, "recall config from index")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wRecal L$(L) $(A)")
+  field( DOL,  "$(P)W_ST_RECALL.VAL NPP NMS")
+  field( OMSL, "closed_loop")
+}
+record( longout, "$(P)W_STORE"){
+  field( DESC, "store config @ index")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wStore L$(L) $(A)")
+  field( DOL,  "$(P)W_ST_RECALL.VAL NPP NMS")
+  field( OMSL, "closed_loop")
+}
+record( stringin, "$(P)R_DATA_ENC"){
+  field( DESC, "data encoding")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rDataE L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( longin, "$(P)R_REC_LEN"){
+  field( DESC, "record length")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rRecL L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( longout, "$(P)W_REC_LEN"){
+  field( DESC, "set record length")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wRecL L$(L) $(A)")
+}
+record( stringin, "$(P)R_HEADER"){
+  field( DESC, "header")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rHead L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( stringin, "$(P)R_DATA_SOURCE"){
+  field( DESC, "data source")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rDSourc L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( longin, "$(P)R_DATA_WIDTH"){
+  field( DESC, "data width")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rDWidth L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( longout, "$(P)W_DATA_WIDTH"){
+  field( DESC, "write data width")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wDWidth L$(L) $(A)")
+}
+record( longin, "$(P)R_DATA_START"){
+  field( DESC, "read data start")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rDStart L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( longout, "$(P)W_DATA_START"){
+  field( DESC, "write data start")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wDStart L$(L) $(A)")
+}
+record( longin, "$(P)R_DATA_STOP"){
+  field( DESC, "read data stop")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rDStop L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( longout, "$(P)W_DATA_STOP"){
+  field( DESC, "write data stop")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wDStop L$(L) $(A)")
+}
+record( mbbi, "$(P)R_DATA_ENCODE"){
+  field( DESC, "rd data encoding")
+  field( DTYP, "stream")
+  field( NOBT, "4")
+  field( INP,  "@tdsCmnd.proto rDEncd L$(L) $(A)")
+  field( ZRVL, "0")
+  field( ONVL, "1")
+  field( TWVL, "2")
+  field( THVL, "3")
+  field( FRVL, "4")
+  field( ZRST, "Ascii")
+  field( ONST, "RiBinary")
+  field( TWST, "RpBinary")
+  field( THST, "SRIBinary")
+  field( FRST, "SRPBinary")
+  field( PINI, "YES")
+}
+record( mbbo, "$(P)W_DATA_ENCODE"){
+  field( DESC, "Set data encoding")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wDEncd L$(L) $(A)")
+  field( ZRVL, "0")
+  field( ONVL, "1")
+  field( TWVL, "2")
+  field( THVL, "3")
+  field( FRVL, "4")
+  field( ZRST, "Ascii")
+  field( ONST, "RiBinary")
+  field( TWST, "RpBinary")
+  field( THST, "SRIBinary")
+  field( FRST, "SRPBinary")
+}
+record( bi, "$(P)R_DISP_AUTO_C"){
+  field( DESC, "rd disp auto contrast")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rDAutoC L$(L) $(A)")
+  field( ZNAM, "Off")
+  field( ONAM, "On")
+}
+record( bo, "$(P)W_DISP_AUTO_C"){
+  field( DESC, "wrt disp auto contrast")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wDAutoC L$(L) $(A)")
+  field( ZNAM, "Off")
+  field( ONAM, "On")
+}
+record( longin, "$(P)R_D_BRIGHT"){
+  field( DESC, "rd disp picture brightness")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rDBright L$(L) $(A)")
+}
+record( longout, "$(P)W_D_BRIGHT"){
+  field( DESC, "wt disp picture brightness")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wDBright L$(L) $(A)")
+}
+record( bi, "$(P)R_D_P_STATE"){
+  field( DESC, "rd disp picture state")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rDPState L$(L) $(A)")
+  field( ZNAM, "Off")
+  field( ONAM, "On")
+}
+record( bo, "$(P)W_D_P_STATE"){
+  field( DESC, "wrt disp picture state")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wDPState L$(L) $(A)")
+  field( ZNAM, "Off")
+  field( ONAM, "On")
+}
+record( mbbi, "$(P)R_D_INTENS_B"){
+  field( DESC, "re disp intensity back")
+  field( DTYP, "stream")
+  field( NOBT, "2")
+  field( INP,  "@tdsCmnd.proto rDIntB L$(L) $(A)")
+  field( ZRVL, "0")
+  field( ONVL, "1")
+  field( TWVL, "2")
+  field( ZRST, "High")
+  field( ONST, "Medium")
+  field( TWST, "Low")
+}
+record( mbbo, "$(P)W_D_INTENS_B"){
+  field( DESC, "wt disp intensity back")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wDIntB L$(L) $(A)")
+  field( ZRVL, "0")
+  field( ONVL, "1")
+  field( TWVL, "2")
+  field( ZRST, "High")
+  field( ONST, "Medium")
+  field( TWST, "Low")
+}
+record( longin, "$(P)R_D_INTENS_WF"){
+  field( DESC, "rd disp intensity wf")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rDIntWF L$(L) $(A)")
+}
+record( longout, "$(P)W_D_INTENS_WF"){
+  field( DESC, "wt disp intensity wf")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wDIntWF L$(L) $(A)")
+}

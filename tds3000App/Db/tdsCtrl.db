@@ -1,0 +1,42 @@
+record( waveform, "$(P)IDN"){
+  field( DESC, "SCPI id string")
+  field( DTYP, "stream")
+  field( FTVL, "CHAR")
+  field( NELM, "170")
+  field( INP,  "@tdsCtrl.proto idn L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( bo, "$(P)NAME"){
+  field( DESC, "$(NAME)")
+}
+record( stringin, "$(P)IP_NAME"){
+  field( DESC, "Scope net name")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCtrl.proto ipname L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( stringout, "$(P)CMND"){
+  field( DESC, "enter a command")
+  field( FLNK, "$(P)CMND1")
+}
+record( genSub, "$(P)CMND1"){
+  field( DESC, "forward a command")
+  field( SNAM, "command")
+  field( EFLG, "ON CHANGE")
+  field( INPA, "$(P)CMND")
+  field( OUTA, "$(P)asynIO.AOUT")
+  field( OUTB, "$(P)asynW.AOUT")
+  field( FLNK, "$(P)asynIO")
+}
+record( asyn,"$(P)asynIO"){
+  field( PORT, "$(PORT)")
+  field( ADDR, "$(A)")
+  field( OMAX, "100")
+  field( IMAX, "100")
+  field( FLNK, "$(P)asynW")
+}
+record( asyn,"$(P)asynW"){
+  field( PORT, "$(PORT)")
+  field( ADDR, "$(A)")
+  field( TMOD, "Write")
+}

@@ -1,0 +1,13 @@
+include "genSubRecord.dbd"
+include "asyn.dbd"
+
+registrar( drvAsynIPPortRegisterCommands)
+
+function( command)
+function( outALen)
+function( outBLen)
+function( errMsg)
+function( dbgPrint)
+function( inPRLen)
+function( inWFLen)
+function( tdsWFScale)

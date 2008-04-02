@@ -1,0 +1,14 @@
+Terminator=LF;
+
+rDESE{   out "DESE?"; in "%u";}
+wDESE{   out "DESE %u"; @init{ rDESE;}}
+rESR{    out "*ESR?"; in "%u";}
+rESE{    out "*ESE?"; in "%u";}
+wESE{    out "*ESE %u"; @init{ rESE;}}
+rEVENT{  out "EVENT?"; in "%u";}
+wCLS{    out "*CLS";}
+rOPC{    out "*OPC?"; in "%s";}
+rSTB{    out "*STB?"; in "%u";}
+rALLEV{  out "ALLE?"; in "%300c";}
+rEVMsg{  out "EVM?"; in "%100c";}
+rEVQty{  out "EVQ?"; in "%u";}

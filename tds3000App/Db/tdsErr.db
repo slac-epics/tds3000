@@ -1,0 +1,89 @@
+#-------- Status and Error commands -------------------------------------
+record( longin, "$(P)R_DESE"){
+  field( DESC, "Dev Event Stat Ena Reg")
+  field( DTYP, "stream")
+  field( INP,  "@tdsErr.proto rDESE L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( longout, "$(P)W_DESE"){
+  field( DESC, "Dev Event Stat Ena Reg")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsErr.proto wDESE L$(L) $(A)")
+}
+record( longin, "$(P)R_ESR"){
+  field( DESC, "Standard Event Status Reg")
+  field( DTYP, "stream")
+  field( INP,  "@tdsErr.proto rESR L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( longin, "$(P)R_ESE"){
+  field( DESC, "event status enable")
+  field( DTYP, "stream")
+  field( INP,  "@tdsErr.proto rESE L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( longout, "$(P)W_ESE"){
+  field( DESC, "event status enable")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsErr.proto wESE L$(L) $(A)")
+}
+record( longin, "$(P)R_EVENTQ"){
+  field( DESC, "Event Queue")
+  field( DTYP, "stream")
+  field( INP,  "@tdsErr.proto rEVENT L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( bo, "$(P)W_CLS"){
+  field( DESC, "Clear Event status")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsErr.proto wCLS L$(L) $(A)")
+  field( ZNAM, "clear")
+  field( ONAM, "clear")
+}
+record( stringin, "$(P)R_OPC"){
+  field( DESC, "operation complete query")
+  field( DTYP, "stream")
+  field( INP,  "@tdsErr.proto rOPC L$(L) $(A)")
+}
+record( longin, "$(P)R_STB"){
+  field( DESC, "rd status byte")
+#  field( SCAN, "2 second")
+  field( DTYP, "stream")
+  field( INP,  "@tdsErr.proto rSTB L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( waveform, "$(P)R_ALL_EVENT"){
+  field( DESC, "rd all events")
+  field( DTYP, "stream")
+  field( FTVL, "CHAR")
+  field( NELM, "300")
+  field( INP,  "@tdsErr.proto rALLEV L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( waveform, "$(P)R_E_MESSAGE"){
+  field( DESC, "rd event message")
+  field( DTYP, "stream")
+  field( FTVL, "CHAR")
+  field( NELM, "100")
+  field( INP,  "@tdsErr.proto rEVMsg L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( longin, "$(P)R_EV_QNTY"){
+  field( DESC, "number of events in queue")
+  field( DTYP, "stream")
+  field( INP,  "@tdsErr.proto rEVQty L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( fanout, "$(P)UPDATE_ERR"){
+  field( DESC, "process all err/stat queries")
+  field( LNK1, "$(P)UPDT_ERR1")
+  field( LNK2, "$(P)R_DESE")
+  field( LNK3, "$(P)R_ESR")
+  field( LNK4, "$(P)R_ESE")
+  field( LNK5, "$(P)R_EVENTQ")
+}
+record( fanout, "$(P)UPDT_ERR1"){
+  field( DESC, "process all err/stat queries")
+  field( LNK1, "$(P)R_E_MESSAGE")
+  field( LNK2, "$(P)R_EV_QNTY")
+}

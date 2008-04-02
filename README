@@ -1,0 +1,48 @@
+This support module was created to control and monitor the Tektronix
+TDS3000 series scopes.  It uses asyn-streamdevice to communicate with the
+instrument.  It was developed with epics-R3-14-9 and depends on the following
+modules:
+ asyn-R4-9,
+ stream-R2-3,
+ genSub-R1-6,
+ seq-R2-0-11.
+
+The edm screens are in
+$(IOC_TOP)/tds3000/tds3000-R1-0/display.
+The sources are in
+$(MODULE_TOP)/tds3000/tds3000-R1-0/tds3000App.
+It needs edm-1-11-1d or later for the x-y graph to work properly.
+
+How does it work?
+- the sequencer consists of four tasks:
+  1. savRest, is the save/restore instrument configuration task.
+     It is activated when a button is pressed on the MORE/UTIL screen.
+     It gets the configuration screen and writes it to a disk file or
+     restores previously saved configuration string from a disk file.
+     The default value, which is set in the sequencer code can be overwritten
+     via a parameter to the sequencer program in the st.cmd file.  An example
+     of that is
+       seq sncTds3x,"P=TDS3:,FN=/usr/local/data/myconfig.txt"
+     The file path can also be changed interractively, see the UTIL screen.
+  2. acquire, controls which channel waveform should be transfered next.
+     This is implemented as a round robin of all enabled channels.  Hence,
+     one waveform is transfered per refresh period.
+  3. chkChan, whatches for transitions in the channel enable buttons on the
+     instrument and if a change is detected, then the write enable PV is
+     put in the same state as the button.  This way the edm button for this
+     channel is forced to reflect the correct state of the channel.
+  4. doRate, is used to clear both counters used in rate calculation.
+     The calculated rate shows how many traces are obtained per second.
+     It can be view in the MORE/DEBG screen.
+
+- genSub is used to:
+  1. convert the waveform data using offset and scale from values read from
+     the instrument.  The same routine is also used to zero the trace data
+     when the channel is disabled.  The sequencer acquire sequence is also
+     involved in this.
+  2. handle an interractive command, see screen MORE/CMND.
+
+- the rest is implemented using epics records.
+
+Author: Zenon M. Szalata
+Last updated on 3/31/2008

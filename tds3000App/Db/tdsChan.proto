@@ -1,0 +1,20 @@
+InTerminator=LF;
+OutTerminator=LF;
+
+rEnCh{   out "select:ch\$1?"; in "%{0|1}";}
+wEnCh{   out "select:ch\$1 %{off|on}";}
+rChPos{  out "ch\$1:position?"; in "%e";}
+wChPos{  out "ch\$1:position %f"; @init{ rChPos;}}
+rChOff{  out "ch\$1:offset?"; in "%f";}
+wChOff{  out "ch\$1:offset %f"; @init{ rChOff;}}
+rChImp{  out "ch\$1:impedance?"; in "%{FIFTY|MEG}";}
+wChImp{  out "ch\$1:impedance %{FIFTY|MEG}"; @init{ rChImp;}}
+rChCpl{  out "ch\$1:coupling?"; in "%{DC|AC|GND}";}
+wChCpl{  out "ch\$1:coupling %{DC|AC|GND}"; @init{ rChCpl;}}
+rChVdiv{ out "ch\$1:scale?"; in "%f";}
+rChScl{  out "ch\$1:scale?"; in "%{1.0E-3|2.0E-3|5.0E-3|1.0E-2|2.0E-2|5.0E-2|1.0E-1|2.0E-1|5.0E-1|1.0E0|2.0E0|5.0E0|1.0E1}";}
+wChScl{  out "ch\$1:scale %{1.0E-3|2.0E-3|5.0E-3|1.0E-2|2.0E-2|5.0E-2|1.0E-1|2.0E-1|5.0E-1|1|2|5|10}";  @init{ rChScl;}}
+rChWfm{  InTerminator=""; out "DAT:SOU CH\$1; :WAVF?"; in "%r";}
+#rChWfm{  out "DAT:SOU CH\$1; :WAVF?"; in "%r";}
+rChWPr{  out "wfmpre?"; in "%c";}
+wDSourc{ out "DAT:SOU CH\$1";}

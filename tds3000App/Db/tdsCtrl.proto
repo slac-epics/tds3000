@@ -1,0 +1,4 @@
+Terminator=LF;
+
+idn{     out "*IDN?"; in "%100c";}
+ipname{  out "ethernet:name?"; in "%s";}
