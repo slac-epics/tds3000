@@ -10,11 +10,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install)
 # databases, templates, substitutions like this
-DB += tdsCtrl.db
-DB += tdsCmnd.db
-DB += tdsChan.db
-DB += tdsDiag.db
-DB += tdsErr.db
+DB += tds.db
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_TEMPLATE = <templatename>

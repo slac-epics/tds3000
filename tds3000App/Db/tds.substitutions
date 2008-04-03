@@ -4,3 +4,15 @@ file tdsChan.template{
   {N=3}
   {N=4}
 }
+file tdsCmnd.db{
+  {SCAN=".1 second", MAX=100000}
+}
+file tdsCtrl.db{
+  {N=0}
+}
+file tdsDiag.db{
+  {N=0}
+}
+file tdsErr.db{
+  {N=0}
+}
