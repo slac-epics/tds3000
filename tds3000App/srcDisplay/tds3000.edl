@@ -59,7 +59,7 @@ endObjectProperties
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
-minor 2
+minor 1
 release 0
 x 5
 y 5
@@ -94,14 +94,13 @@ botShadowColor index 12
 label "EXIT"
 font "helvetica-medium-r-12.0"
 3d
-exitProgram
 endObjectProperties
 
 # (Text Monitor)
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
-minor 2
+minor 1
 release 0
 x 5
 y 25
@@ -270,7 +269,7 @@ endObjectProperties
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
-minor 2
+minor 1
 release 0
 x 255
 y 440
@@ -314,7 +313,7 @@ endObjectProperties
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
-minor 2
+minor 1
 release 0
 x 390
 y 440
@@ -336,7 +335,7 @@ endObjectProperties
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
-minor 2
+minor 1
 release 0
 x 435
 y 440
@@ -379,7 +378,7 @@ endObjectProperties
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
-minor 2
+minor 1
 release 0
 x 440
 y 455
@@ -401,7 +400,7 @@ endObjectProperties
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
-minor 2
+minor 1
 release 0
 x 445
 y 75
@@ -425,7 +424,7 @@ endObjectProperties
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
-minor 2
+minor 1
 release 0
 x 60
 y 440
@@ -449,7 +448,7 @@ endObjectProperties
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
-minor 2
+minor 1
 release 0
 x 160
 y 440
@@ -473,7 +472,7 @@ endObjectProperties
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
-minor 2
+minor 1
 release 0
 x 60
 y 465
@@ -497,7 +496,7 @@ endObjectProperties
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
-minor 2
+minor 1
 release 0
 x 160
 y 465
@@ -521,7 +520,7 @@ endObjectProperties
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
-minor 2
+minor 1
 release 0
 x 35
 y 75
@@ -561,7 +560,7 @@ endObjectProperties
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
-minor 2
+minor 1
 release 0
 x 260
 y 465
@@ -679,7 +678,7 @@ endObjectProperties
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
-minor 2
+minor 1
 release 0
 x 650
 y 5
@@ -721,7 +720,7 @@ endObjectProperties
 object activeXTextDspClass:noedit
 beginObjectProperties
 major 4
-minor 2
+minor 1
 release 0
 x 650
 y 25
