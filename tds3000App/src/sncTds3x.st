@@ -27,7 +27,7 @@ short ops; assign ops to "{P}1PER_SECOND.VAL";
 short cts; assign cts to "{P}COUNT_GETS.VAL";
 int busy[4]; assign busy to {	"{P}C_CH1_BUSY.VAL","{P}C_CH2_BUSY.VAL",
 				"{P}C_CH3_BUSY.VAL","{P}C_CH4_BUSY.VAL"};
-char spath[SPATH]; assign spath to "{P}SAV_PATH";
+char spath[SPATH]; assign spath to "{P}SAV_PATH"; monitor spath;
 char setup[SETUP]; assign setup to "{P}R_SETUP"; monitor setup;
 evflag setpEv; sync setup setpEv;
 short rstor; assign rstor to "{P}RESTORE"; monitor rstor;
@@ -43,35 +43,36 @@ int flg2[4];
 char* fname;
 
 %{
-static int rdFile( char* msg,char* fname){
+static int rdFile( char* msg,char* fn){
 /*------------------------------------------------------------------------------
  * read configuration string data from fname file.
  *----------------------------------------------------------------------------*/
   FILE* fd; char str[32];
 
   strcpy( str,msg); strcat( str,":rdFile");
-  fd=fopen( fname,"r");
-  if(!fd) printf( "%s:rdFile: failed to open %s\n",msg,fname);
+  fd=fopen( fn,"r");
+  if(!fd) printf( "%s:rdFile: failed to open %s\n",msg,fn);
   else{
-    printf( "%s:rdFile:opened %s\n",msg,fname);
-    fgets( wfRst,SETUP-1,fd);
+    printf( "%s:rdFile:opened %s\n",msg,fn);
+    fgets( wfRst,SETUP-1,fd); wfRst[SETUP-1]=0;
+printf( "sncTds3x:rdFile:strlen(wfRst)=%d\n",strlen(wfRst));
     if(ferror( fd)){ perror( str); return(-1);}
   }
   return(0);
 }
-static void wtFile( char* msg,char* fname){
+static void wtFile( char* msg,char* fn){
 /*------------------------------------------------------------------------------
  * saves a string of data in a file.
  *----------------------------------------------------------------------------*/
   FILE* fd; int stat;
 
-  fd=fopen( fname,"w");
-  if(!fd) printf( "%s:wtFile: failed to open %s\n",msg,fname);
+  fd=fopen( fn,"w");
+  if(!fd) printf( "%s:wtFile: failed to open %s\n",msg,fn);
   else{
     setup[SETUP-1]=0;
     stat=fputs( setup,fd);
     if(stat==EOF) printf( "%s:wtFile:fputs: failed to write\n",msg);
-    else printf( "%s:wtFile: wrote to %s\n",msg,fname);
+    else printf( "%s:wtFile: wrote to %s\n",msg,fn);
     fclose( fd);
   }
 }
@@ -91,8 +92,6 @@ ss savRest{
   }
   state save{
     when( efTestAndClear( setpEv)){
-/*      if(initSR) initSR=0;
-      else wtFile( "sncTds3x",spath); */
       wtFile( "sncTds3x",spath);
     } state restore
     when( delay(0.1)){} state restore

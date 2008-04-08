@@ -333,7 +333,7 @@ record( bi, "$(P)R_ACQ_STAT"){
 }
 record( mbbi, "$(P)R_TRIG_STATE"){
   field( DESC, "Trigger State")
-  field( SCAN, "1 second")
+#  field( SCAN, "1 second")
   field( DTYP, "stream")
   field( NOBT, "4")
   field( INP,  "@tdsCmnd.proto rTrigSt L$(L) $(A)")
@@ -362,13 +362,6 @@ record( bo, "$(P)STOP"){
   field( OUT,  "@tdsCmnd.proto wStop L$(L) $(A)")
   field( ONAM, "Stop")
   field( FLNK, "$(P)R_ACQ_STAT")
-}
-record( bo, "$(P)W_INIT"){
-  field( DESC, "Init instr for waveform")
-  field( DTYP, "stream")
-  field( OUT,  "@tdsCmnd.proto wInit L$(L) $(A)")
-  field( ZNAM, "init")
-  field( ONAM, "init")
 }
 record( bi, "$(P)R_FP_LOCK"){
   field( DESC, "Front Panel Lock stat")
@@ -453,100 +446,13 @@ record( longout, "$(P)W_STORE"){
   field( DOL,  "$(P)W_ST_RECALL.VAL NPP NMS")
   field( OMSL, "closed_loop")
 }
-record( stringin, "$(P)R_DATA_ENC"){
-  field( DESC, "data encoding")
-  field( DTYP, "stream")
-  field( INP,  "@tdsCmnd.proto rDataE L$(L) $(A)")
-  field( PINI, "YES")
-}
-record( longin, "$(P)R_REC_LEN"){
-  field( DESC, "record length")
-  field( DTYP, "stream")
-  field( INP,  "@tdsCmnd.proto rRecL L$(L) $(A)")
-  field( PINI, "YES")
-}
-record( longout, "$(P)W_REC_LEN"){
-  field( DESC, "set record length")
-  field( DTYP, "stream")
-  field( OUT,  "@tdsCmnd.proto wRecL L$(L) $(A)")
-}
-record( stringin, "$(P)R_HEADER"){
-  field( DESC, "header")
-  field( DTYP, "stream")
-  field( INP,  "@tdsCmnd.proto rHead L$(L) $(A)")
-  field( PINI, "YES")
-}
 record( stringin, "$(P)R_DATA_SOURCE"){
   field( DESC, "data source")
   field( DTYP, "stream")
   field( INP,  "@tdsCmnd.proto rDSourc L$(L) $(A)")
   field( PINI, "YES")
 }
-record( longin, "$(P)R_DATA_WIDTH"){
-  field( DESC, "data width")
-  field( DTYP, "stream")
-  field( INP,  "@tdsCmnd.proto rDWidth L$(L) $(A)")
-  field( PINI, "YES")
-}
-record( longout, "$(P)W_DATA_WIDTH"){
-  field( DESC, "write data width")
-  field( DTYP, "stream")
-  field( OUT,  "@tdsCmnd.proto wDWidth L$(L) $(A)")
-}
-record( longin, "$(P)R_DATA_START"){
-  field( DESC, "read data start")
-  field( DTYP, "stream")
-  field( INP,  "@tdsCmnd.proto rDStart L$(L) $(A)")
-  field( PINI, "YES")
-}
-record( longout, "$(P)W_DATA_START"){
-  field( DESC, "write data start")
-  field( DTYP, "stream")
-  field( OUT,  "@tdsCmnd.proto wDStart L$(L) $(A)")
-}
-record( longin, "$(P)R_DATA_STOP"){
-  field( DESC, "read data stop")
-  field( DTYP, "stream")
-  field( INP,  "@tdsCmnd.proto rDStop L$(L) $(A)")
-  field( PINI, "YES")
-}
-record( longout, "$(P)W_DATA_STOP"){
-  field( DESC, "write data stop")
-  field( DTYP, "stream")
-  field( OUT,  "@tdsCmnd.proto wDStop L$(L) $(A)")
-}
-record( mbbi, "$(P)R_DATA_ENCODE"){
-  field( DESC, "rd data encoding")
-  field( DTYP, "stream")
-  field( NOBT, "4")
-  field( INP,  "@tdsCmnd.proto rDEncd L$(L) $(A)")
-  field( ZRVL, "0")
-  field( ONVL, "1")
-  field( TWVL, "2")
-  field( THVL, "3")
-  field( FRVL, "4")
-  field( ZRST, "Ascii")
-  field( ONST, "RiBinary")
-  field( TWST, "RpBinary")
-  field( THST, "SRIBinary")
-  field( FRST, "SRPBinary")
-  field( PINI, "YES")
-}
-record( mbbo, "$(P)W_DATA_ENCODE"){
-  field( DESC, "Set data encoding")
-  field( DTYP, "stream")
-  field( OUT,  "@tdsCmnd.proto wDEncd L$(L) $(A)")
-  field( ZRVL, "0")
-  field( ONVL, "1")
-  field( TWVL, "2")
-  field( THVL, "3")
-  field( FRVL, "4")
-  field( ZRST, "Ascii")
-  field( ONST, "RiBinary")
-  field( TWST, "RpBinary")
-  field( THST, "SRIBinary")
-  field( FRST, "SRPBinary")
-}
+#-------------------- display control commands ---------------------------------
 record( bi, "$(P)R_DISP_AUTO_C"){
   field( DESC, "rd disp auto contrast")
   field( DTYP, "stream")
@@ -617,4 +523,155 @@ record( longout, "$(P)W_D_INTENS_WF"){
   field( DESC, "wt disp intensity wf")
   field( DTYP, "stream")
   field( OUT,  "@tdsCmnd.proto wDIntWF L$(L) $(A)")
+}
+#--------- periodic scan of chanx enable ---------------------------------------
+record( fanout, "$(P)FO_CHAN_ENABLE"){
+  field( DESC, "periodic update")
+#  field( SCAN, "1 second")
+  field( LNK1, "$(P)R_CH1_ENABLE")
+  field( LNK2, "$(P)R_CH2_ENABLE")
+  field( LNK3, "$(P)R_CH3_ENABLE")
+  field( LNK4, "$(P)R_CH4_ENABLE")
+}
+#---------------- data acquisition setup ---------------------------------------
+record( bo, "$(P)W_INIT"){
+  field( DESC, "Init instr for waveform")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wInit L$(L) $(A)")
+  field( ZNAM, "init")
+  field( ONAM, "init")
+  field( PINI, "YES")
+  field( FLNK, "$(P)FO_DACQ_STUFF")
+}
+record( fanout, "$(P)FO_DACQ_STUFF"){
+  field( DESC, "to process various reads")
+  field( LNK1, "$(P)R_DATA_ENCODE")
+  field( LNK2, "$(P)R_REC_LEN")
+  field( LNK3, "$(P)R_HEADER")
+  field( LNK4, "$(P)R_DATA_WIDTH")
+  field( LNK5, "$(P)R_DATA_START")
+  field( LNK6, "$(P)R_DATA_STOP")
+}
+record( mbbi, "$(P)R_DATA_ENCODE"){
+  field( DESC, "rd data encoding")
+  field( DTYP, "stream")
+  field( NOBT, "4")
+  field( INP,  "@tdsCmnd.proto rDEncd L$(L) $(A)")
+  field( ZRVL, "0")
+  field( ONVL, "1")
+  field( TWVL, "2")
+  field( THVL, "3")
+  field( FRVL, "4")
+  field( ZRST, "Ascii")
+  field( ONST, "RiBinary")
+  field( TWST, "RpBinary")
+  field( THST, "SRIBinary")
+  field( FRST, "SRPBinary")
+  field( FLNK, "$(P)dfoDataEnc PP")
+}
+record( dfanout, "$(P)dfoDataEnc"){
+  field( DESC, "move data from read to write")
+  field( DOL,  "$(P)R_DATA_ENCODE")
+  field( OMSL, "closed_loop")
+  field( OUTA, "$(P)W_DATA_ENCODE")
+  field( FLNK, "$(P)W_DATA_ENCODE NPP")
+}
+record( mbbo, "$(P)W_DATA_ENCODE"){
+  field( DESC, "Set data encoding")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wDEncd L$(L) $(A)")
+  field( ZRVL, "0")
+  field( ONVL, "1")
+  field( TWVL, "2")
+  field( THVL, "3")
+  field( FRVL, "4")
+  field( ZRST, "Ascii")
+  field( ONST, "RiBinary")
+  field( TWST, "RpBinary")
+  field( THST, "SRIBinary")
+  field( FRST, "SRPBinary")
+}
+record( stringin, "$(P)R_DATA_ENC"){
+  field( DESC, "data encoding")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rDataE L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( longin, "$(P)R_REC_LEN"){
+  field( DESC, "record length")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rRecL L$(L) $(A)")
+  field( FLNK, "$(P)dfoRecLen PP")
+}
+record( dfanout, "$(P)dfoRecLen"){
+  field( DESC, "move data from read to write")
+  field( DOL,  "$(P)R_REC_LEN")
+  field( OMSL, "closed_loop")
+  field( OUTA, "$(P)W_REC_LEN")
+  field( FLNK, "$(P)W_REC_LEN NPP")
+}
+record( longout, "$(P)W_REC_LEN"){
+  field( DESC, "set record length")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wRecL L$(L) $(A)")
+}
+record( stringin, "$(P)R_HEADER"){
+  field( DESC, "header")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rHead L$(L) $(A)")
+  field( PINI, "YES")
+}
+record( longin, "$(P)R_DATA_WIDTH"){
+  field( DESC, "data width")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rDWidth L$(L) $(A)")
+  field( FLNK, "$(P)dfoDataWidth PP")
+}
+record( dfanout, "$(P)dfoDataWidth"){
+  field( DESC, "move data from read to write")
+  field( DOL,  "$(P)R_DATA_WIDTH")
+  field( OMSL, "closed_loop")
+  field( OUTA, "$(P)W_DATA_WIDTH")
+  field( FLNK, "$(P)W_DATA_WIDTH NPP")
+}
+record( longout, "$(P)W_DATA_WIDTH"){
+  field( DESC, "write data width")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wDWidth L$(L) $(A)")
+}
+record( longin, "$(P)R_DATA_START"){
+  field( DESC, "read data start")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rDStart L$(L) $(A)")
+  field( FLNK, "$(P)dfoDataStart PP")
+}
+record( dfanout, "$(P)dfoDataStart"){
+  field( DESC, "move data from read to write")
+  field( DOL,  "$(P)R_DATA_START")
+  field( OMSL, "closed_loop")
+  field( OUTA, "$(P)W_DATA_START")
+  field( FLNK, "$(P)W_DATA_START NPP")
+}
+record( longout, "$(P)W_DATA_START"){
+  field( DESC, "write data start")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wDStart L$(L) $(A)")
+}
+record( longin, "$(P)R_DATA_STOP"){
+  field( DESC, "read data stop")
+  field( DTYP, "stream")
+  field( INP,  "@tdsCmnd.proto rDStop L$(L) $(A)")
+  field( FLNK, "$(P)dfoDataStop PP")
+}
+record( dfanout, "$(P)dfoDataStop"){
+  field( DESC, "move data from read to write")
+  field( DOL,  "$(P)R_DATA_STOP")
+  field( OMSL, "closed_loop")
+  field( OUTA, "$(P)W_DATA_STOP")
+  field( FLNK, "$(P)W_DATA_STOP NPP")
+}
+record( longout, "$(P)W_DATA_STOP"){
+  field( DESC, "write data stop")
+  field( DTYP, "stream")
+  field( OUT,  "@tdsCmnd.proto wDStop L$(L) $(A)")
 }

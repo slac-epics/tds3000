@@ -1,0 +1,1867 @@
+4 0 1
+beginScreenProperties
+major 4
+minor 0
+release 1
+x 623
+y 46
+w 870
+h 550
+font "helvetica-medium-r-12.0"
+ctlFont "helvetica-medium-r-12.0"
+btnFont "helvetica-medium-r-12.0"
+fgColor index 13
+bgColor index 5
+textColor index 13
+ctlFgColor1 index 55
+ctlFgColor2 index 40
+ctlBgColor1 index 4
+ctlBgColor2 index 8
+topShadowColor index 1
+botShadowColor index 12
+showGrid
+snapToGrid
+gridSize 5
+disableScroll
+endScreenProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 5
+y 55
+w 500
+h 445
+lineColor index 10
+fill
+fillColor index 12
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 0
+y 0
+w 879
+h 45
+lineColor index 13
+fill
+fillColor index 63
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 5
+y 5
+w 118
+h 16
+controlPv "$(usr):IP_NAME"
+font "helvetica-bold-r-14.0"
+fgColor index 13
+bgColor index 63
+autoHeight
+limitsFromDb
+nullColor index 40
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Exit Button)
+object activeExitButtonClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 825
+y 10
+w 45
+h 25
+fgColor index 13
+bgColor index 74
+topShadowColor index 1
+botShadowColor index 12
+label "EXIT"
+font "helvetica-medium-r-12.0"
+3d
+exitProgram
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 5
+y 25
+w 480
+h 14
+controlPv "$(usr):IDN"
+font "helvetica-medium-r-12.0"
+fgColor index 13
+bgColor index 63
+autoHeight
+limitsFromDb
+nullColor index 40
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Menu Button)
+object activeMenuButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 70
+y 510
+w 90
+h 25
+fgColor index 13
+bgColor index 50
+inconsistentColor index 8
+topShadowColor index 1
+botShadowColor index 12
+controlPv "$(usr):COUNT.SCAN"
+font "helvetica-medium-r-12.0"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 25
+y 515
+w 42
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 13
+bgColor index 4
+useDisplayBg
+value {
+  "Update:"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 30
+y 440
+w 23
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 13
+bgColor index 55
+visPv "$(usr):R_CH1_ENABLE"
+visMin "1"
+visMax "2"
+value {
+  "Ch1"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 30
+y 465
+w 23
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 13
+bgColor index 55
+visPv "$(usr):R_CH3_ENABLE"
+visMin "1"
+visMax "2"
+value {
+  "Ch3"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 130
+y 440
+w 23
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 13
+bgColor index 55
+visPv "$(usr):R_CH2_ENABLE"
+visMin "1"
+visMax "2"
+value {
+  "Ch2"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 130
+y 465
+w 23
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 13
+bgColor index 55
+visPv "$(usr):R_CH4_ENABLE"
+visMin "1"
+visMax "2"
+value {
+  "Ch4"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 240
+y 440
+w 11
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 55
+bgColor index 4
+useDisplayBg
+value {
+  "M"
+}
+autoSize
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 255
+y 440
+w 90
+h 14
+controlPv "$(usr):R_TIME_DIV"
+format "exponential"
+font "helvetica-medium-r-12.0"
+fgColor index 55
+bgColor index 12
+autoHeight
+limitsFromDb
+nullColor index 12
+useHexPrefix
+showUnits
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 370
+y 440
+w 9
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 55
+bgColor index 4
+useDisplayBg
+value {
+  "A"
+}
+autoSize
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 390
+y 440
+w 45
+h 14
+controlPv "$(usr):R_TRIG_SOUR"
+font "helvetica-medium-r-12.0"
+fgColor index 55
+bgColor index 12
+autoHeight
+limitsFromDb
+nullColor index 12
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 435
+y 440
+w 40
+h 14
+controlPv "$(usr):R_TRIG_LEV"
+font "helvetica-medium-r-12.0"
+fgColor index 55
+bgColor index 12
+autoHeight
+limitsFromDb
+nullColor index 12
+useHexPrefix
+showUnits
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 400
+y 455
+w 30
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 55
+bgColor index 4
+useDisplayBg
+value {
+  "slope"
+}
+autoSize
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 440
+y 455
+w 40
+h 14
+controlPv "$(usr):R_TRIG_SLOPE"
+font "helvetica-medium-r-12.0"
+fgColor index 55
+bgColor index 12
+autoHeight
+limitsFromDb
+nullColor index 12
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 445
+y 75
+w 50
+h 14
+controlPv "$(usr):R_TRIG_STATE"
+font "helvetica-medium-r-12.0"
+fgColor index 55
+bgColor index 12
+autoHeight
+limitsFromDb
+nullPv "$(usr):R_ACQ_STAT.VAL"
+nullColor index 12
+nullCondition "nullEq0"
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 60
+y 440
+w 60
+h 14
+controlPv "$(usr):SC_CH1_VDIV"
+font "helvetica-medium-r-12.0"
+fgColor index 55
+bgColor index 12
+autoHeight
+limitsFromDb
+nullColor index 12
+nullCondition "nullEq0"
+colorPv "$(usr):R_CH1_ENABLE"
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 160
+y 440
+w 60
+h 14
+controlPv "$(usr):SC_CH2_VDIV"
+font "helvetica-medium-r-12.0"
+fgColor index 55
+bgColor index 12
+autoHeight
+limitsFromDb
+nullPv "$(usr):R_CH2_ENABLE"
+nullColor index 12
+nullCondition "nullEq0"
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 60
+y 465
+w 60
+h 14
+controlPv "$(usr):SC_CH3_VDIV"
+font "helvetica-medium-r-12.0"
+fgColor index 55
+bgColor index 12
+autoHeight
+limitsFromDb
+nullPv "$(usr):R_CH3_ENABLE"
+nullColor index 12
+nullCondition "nullEq0"
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 160
+y 465
+w 60
+h 14
+controlPv "$(usr):SC_CH4_VDIV"
+font "helvetica-medium-r-12.0"
+fgColor index 55
+bgColor index 12
+autoHeight
+limitsFromDb
+nullPv "$(usr):R_CH4_ENABLE"
+nullColor index 12
+nullCondition "nullEq0"
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 35
+y 75
+w 70
+h 14
+controlPv "$(usr):R_ACQ_STAT"
+font "helvetica-medium-r-12.0"
+fgColor index 55
+bgColor index 12
+autoHeight
+limitsFromDb
+nullColor index 12
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 240
+y 465
+w 15
+h 15
+font "helvetica-bold-r-14.0"
+fgColor index 13
+bgColor index 74
+value {
+  " T"
+}
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 260
+y 465
+w 55
+h 14
+controlPv "$(usr):R_TIME_REF"
+font "helvetica-medium-r-12.0"
+fgColor index 55
+bgColor index 12
+autoHeight
+limitsFromDb
+nullColor index 12
+useHexPrefix
+showUnits
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Embedded Window)
+object activePipClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 515
+y 55
+w 340
+h 480
+fgColor index 13
+bgColor index 5
+topShadowColor index 5
+botShadowColor index 5
+displaySource "file"
+file "embd"
+sizeOfs 5
+numDsps 0
+noScroll
+endObjectProperties
+
+# (X-Y Graph)
+object xyGraphClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+# Geometry
+x 30
+y 100
+w 450
+h 320
+# Appearance
+plotAreaBorder
+fgColor index 10
+bgColor index 12
+gridColor index 10
+font "helvetica-medium-r-12.0"
+# Operating Modes
+nPts 2
+# X axis properties
+xAxisSrc "fromUser"
+xMin 0
+xMax 500
+xLabelIntervals 10
+# Y axis properties
+yAxisSrc "fromUser"
+yMin -4
+yMax 4
+yLabelIntervals 8
+# Y2 axis properties
+y2AxisSrc "AutoScale"
+y2Max 1
+# Trace Properties
+numTraces 4
+yPv {
+  0 "$(usr):GS_CH1_WFORM.VALA"
+  1 "$(usr):GS_CH2_WFORM.VALA"
+  2 "$(usr):GS_CH3_WFORM.VALA"
+  3 "$(usr):GS_CH4_WFORM.VALA"
+}
+ySigned {
+  0 1
+  1 1
+  2 1
+  3 1
+}
+plotColor {
+  0 index 40
+  1 index 63
+  2 index 45
+  3 index 15
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 555
+y 5
+w 84
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 13
+bgColor index 4
+useDisplayBg
+value {
+  "IOC started on:"
+}
+autoSize
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 650
+y 5
+w 155
+h 14
+controlPv "$(usr):START_TIME"
+font "helvetica-medium-r-12.0"
+fgColor index 13
+bgColor index 63
+autoHeight
+limitsFromDb
+nullColor index 40
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 595
+y 25
+w 42
+h 14
+font "helvetica-medium-r-12.0"
+fgColor index 13
+bgColor index 4
+useDisplayBg
+value {
+  "current:"
+}
+autoSize
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 2
+release 0
+x 650
+y 25
+w 155
+h 14
+controlPv "$(usr):CURR_TIME"
+font "helvetica-medium-r-12.0"
+fgColor index 13
+bgColor index 63
+autoHeight
+limitsFromDb
+nullColor index 40
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Group)
+object activeGroupClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 30
+y 420
+w 450
+h 10
+
+beginGroup
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 30
+y 420
+w 450
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 3
+xPoints {
+  0 30
+  1 480
+  2 480
+}
+yPoints {
+  0 420
+  1 420
+  2 420
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 30
+y 420
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 30
+  1 30
+}
+yPoints {
+  0 420
+  1 430
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 75
+y 420
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 75
+  1 75
+}
+yPoints {
+  0 420
+  1 430
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 120
+y 420
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 120
+  1 120
+}
+yPoints {
+  0 420
+  1 430
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 165
+y 420
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 165
+  1 165
+}
+yPoints {
+  0 420
+  1 430
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 210
+y 420
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 210
+  1 210
+}
+yPoints {
+  0 420
+  1 430
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 255
+y 420
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 255
+  1 255
+}
+yPoints {
+  0 420
+  1 430
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 300
+y 420
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 300
+  1 300
+}
+yPoints {
+  0 420
+  1 430
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 345
+y 420
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 345
+  1 345
+}
+yPoints {
+  0 420
+  1 430
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 390
+y 420
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 390
+  1 390
+}
+yPoints {
+  0 420
+  1 430
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 435
+y 420
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 435
+  1 435
+}
+yPoints {
+  0 420
+  1 430
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 480
+y 420
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 480
+  1 480
+}
+yPoints {
+  0 420
+  1 430
+}
+endObjectProperties
+
+endGroup
+
+endObjectProperties
+
+# (Group)
+object activeGroupClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 30
+y 90
+w 450
+h 10
+
+beginGroup
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 30
+y 100
+w 450
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 3
+xPoints {
+  0 30
+  1 480
+  2 480
+}
+yPoints {
+  0 100
+  1 100
+  2 100
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 30
+y 90
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 30
+  1 30
+}
+yPoints {
+  0 100
+  1 90
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 75
+y 90
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 75
+  1 75
+}
+yPoints {
+  0 100
+  1 90
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 120
+y 90
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 120
+  1 120
+}
+yPoints {
+  0 100
+  1 90
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 165
+y 90
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 165
+  1 165
+}
+yPoints {
+  0 100
+  1 90
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 210
+y 90
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 210
+  1 210
+}
+yPoints {
+  0 100
+  1 90
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 255
+y 90
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 255
+  1 255
+}
+yPoints {
+  0 100
+  1 90
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 300
+y 90
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 300
+  1 300
+}
+yPoints {
+  0 100
+  1 90
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 345
+y 90
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 345
+  1 345
+}
+yPoints {
+  0 100
+  1 90
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 390
+y 90
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 390
+  1 390
+}
+yPoints {
+  0 100
+  1 90
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 435
+y 90
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 435
+  1 435
+}
+yPoints {
+  0 100
+  1 90
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 480
+y 90
+w 0
+h 10
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 480
+  1 480
+}
+yPoints {
+  0 100
+  1 90
+}
+endObjectProperties
+
+endGroup
+
+endObjectProperties
+
+# (Group)
+object activeGroupClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 20
+y 100
+w 10
+h 320
+
+beginGroup
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 30
+y 100
+w 0
+h 320
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 30
+  1 30
+}
+yPoints {
+  0 100
+  1 420
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 20
+y 395
+w 0
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 1
+xPoints {
+  0 20
+}
+yPoints {
+  0 395
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 20
+y 100
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 30
+  1 20
+}
+yPoints {
+  0 100
+  1 100
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 20
+y 140
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 30
+  1 20
+}
+yPoints {
+  0 140
+  1 140
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 20
+y 180
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 30
+  1 20
+}
+yPoints {
+  0 180
+  1 180
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 20
+y 220
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 30
+  1 20
+}
+yPoints {
+  0 220
+  1 220
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 20
+y 260
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 30
+  1 20
+}
+yPoints {
+  0 260
+  1 260
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 20
+y 300
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 30
+  1 20
+}
+yPoints {
+  0 300
+  1 300
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 20
+y 340
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 30
+  1 20
+}
+yPoints {
+  0 340
+  1 340
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 20
+y 380
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 30
+  1 20
+}
+yPoints {
+  0 380
+  1 380
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 20
+y 420
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 30
+  1 20
+}
+yPoints {
+  0 420
+  1 420
+}
+endObjectProperties
+
+endGroup
+
+endObjectProperties
+
+# (Group)
+object activeGroupClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 480
+y 100
+w 10
+h 320
+
+beginGroup
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 480
+y 100
+w 0
+h 320
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 480
+  1 480
+}
+yPoints {
+  0 100
+  1 420
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 490
+y 395
+w 0
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 1
+xPoints {
+  0 490
+}
+yPoints {
+  0 395
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 480
+y 100
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 480
+  1 490
+}
+yPoints {
+  0 100
+  1 100
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 480
+y 140
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 480
+  1 490
+}
+yPoints {
+  0 140
+  1 140
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 480
+y 180
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 480
+  1 490
+}
+yPoints {
+  0 180
+  1 180
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 480
+y 220
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 480
+  1 490
+}
+yPoints {
+  0 220
+  1 220
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 480
+y 260
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 480
+  1 490
+}
+yPoints {
+  0 260
+  1 260
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 480
+y 300
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 480
+  1 490
+}
+yPoints {
+  0 300
+  1 300
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 480
+y 340
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 480
+  1 490
+}
+yPoints {
+  0 340
+  1 340
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 480
+y 380
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 480
+  1 490
+}
+yPoints {
+  0 380
+  1 380
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 480
+y 420
+w 10
+h 0
+lineColor index 10
+fillColor index 4
+numPoints 2
+xPoints {
+  0 480
+  1 490
+}
+yPoints {
+  0 420
+  1 420
+}
+endObjectProperties
+
+endGroup
+
+endObjectProperties
+

@@ -1,9 +1,7 @@
-Terminator=LF;
+InTerminator=LF;
+OutTerminator=LF;
 
-INIT1="*cls; :DAT:ENC RIB; :HOR:RECORDL 500;";
-INIT2=" :HEAD OFF; :VERB ON; :DAT:STAR 1; :DAT:STOP 500";
-INITIALIZE=${INIT1}${INIT2};
-
+wInit{   out "*cls; :DAT:ENC RIB; :HOR:RECORDL 500; :HEAD OFF; :VERB ON; :DAT:STAR 1; :DAT:STOP 500";}
 rTimeB{  out "horizontal:main:scale?"; in "%f";}
 wTimeB{  out "horizontal:main:scale %e"; @init{ rTimeB;}}
 rTimeD{  out "horizontal:delay:time?"; in "%f";}
@@ -25,7 +23,6 @@ rAcqSt{  out "acquire:state?"; in "%{0|1}";}
 rTrigSt{ out "trigger:state?"; in "%{AUTO|ARMED|READY|SAVE|TRIGGER}";}
 wRun{    out "acquire:state run";}
 wStop{   out "acquire:state stop";}
-wInit{   out "${INITIALIZE}";}
 wAutoS{  out "autoset execute";}
 rAcqStA{ out "acquire:stopafter?"; in "%{RUNSTOP|SEQUENCE}";}
 wAcqStA{ out "acquire:stopafter %{RUNSTOP|SEQUENCE}"; @init{ rAcqStA;}}
@@ -33,8 +30,9 @@ rFPLock{ out "lock?"; in "%{NONE|ALL}";}
 wFPLock{ out "lock %{NONE|ALL}"; @init{ rFPLock;}}
 rBusy{   out "busy?"; in "%{0|1}";}
 wReset{  out "*RST";}
-rSetup{  out "set?"; in "%4000c";}
-wSetup{  out "set %4000c";}
+rSetup{  InTerminator=""; out "set?"; in "%4000c";}
+#rSetup{  out "set?"; in "%4000c";}
+wSetup{  out "%s";}
 wRecal{  out "*RCL %d";}
 wStore{  out "*SAV %d";}
 rDataE{  out "data:encdg?"; in "%s";}
