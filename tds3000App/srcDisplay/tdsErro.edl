@@ -25,21 +25,6 @@ gridSize 5
 disableScroll
 endScreenProperties
 
-# (Rectangle)
-object activeRectangleClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 0
-y 0
-w 288
-h 25
-lineColor index 13
-fill
-fillColor index 63
-endObjectProperties
-
 # (Static Text)
 object activeXTextClass
 beginObjectProperties
@@ -421,14 +406,14 @@ beginObjectProperties
 major 4
 minor 2
 release 0
-x 235
+x 230
 y 5
-w 35
-h 15
+w 40
+h 20
 fgColor index 13
 bgColor index 63
-topShadowColor index 63
-botShadowColor index 63
+topShadowColor index 1
+botShadowColor index 10
 font "helvetica-medium-r-12.0"
 buttonLabel "Help"
 numPvs 4

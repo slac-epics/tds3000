@@ -24,21 +24,6 @@ snapToGrid
 gridSize 5
 endScreenProperties
 
-# (Rectangle)
-object activeRectangleClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 0
-y 0
-w 283
-h 25
-lineColor index 13
-fill
-fillColor index 63
-endObjectProperties
-
 # (Static Text)
 object activeXTextClass
 beginObjectProperties
@@ -46,7 +31,7 @@ major 4
 minor 1
 release 0
 x 5
-y 5
+y 10
 w 42
 h 14
 font "helvetica-medium-r-12.0"

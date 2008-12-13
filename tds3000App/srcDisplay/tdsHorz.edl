@@ -31,21 +31,6 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 0
-y 0
-w 308
-h 25
-lineColor index 13
-fill
-fillColor index 63
-endObjectProperties
-
-# (Rectangle)
-object activeRectangleClass
-beginObjectProperties
-major 4
-minor 0
-release 0
 x 35
 y 160
 w 265

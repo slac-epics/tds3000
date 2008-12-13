@@ -25,29 +25,14 @@ gridSize 5
 disableScroll
 endScreenProperties
 
-# (Rectangle)
-object activeRectangleClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 0
-y 0
-w 288
-h 25
-lineColor index 13
-fill
-fillColor index 63
-endObjectProperties
-
 # (Static Text)
 object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
 release 0
-x 5
-y 5
+x 10
+y 10
 w 30
 h 14
 font "helvetica-medium-r-12.0"

@@ -31,21 +31,6 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 0
-y 0
-w 308
-h 25
-lineColor index 13
-fill
-fillColor index 63
-endObjectProperties
-
-# (Rectangle)
-object activeRectangleClass
-beginObjectProperties
-major 4
-minor 0
-release 0
 x 145
 y 80
 w 150
@@ -61,8 +46,8 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 5
-y 5
+x 25
+y 20
 w 39
 h 14
 font "helvetica-medium-r-12.0"
