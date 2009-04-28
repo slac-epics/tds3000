@@ -1,38 +1,27 @@
 #RELEASE Location of external products
-#
-# IF YOU MAKE ANY CHANGES to this file you MUST at least run
-# "gnumake" in this directory afterwards; you usually need
-# to run "gnumake rebuild" in the application's top level
-# directory each time this file is changed.
-#
-# NOTE: The build does not check dependencies against files
-# that are outside this application, thus you should run
-# "gnumake distclean install" in the top directory each time
-# EPICS_BASE, SNCSEQ, or any other external module defined
-# in the RELEASE file is rebuilt.
-#
-# Host/target specific settings can be specified in files named
-#  RELEASE.$(EPICS_HOST_ARCH).Common
-#  RELEASE.Common.$(T_A)
-#  RELEASE.$(EPICS_HOST_ARCH).$(T_A)
-
-# Pickup the path to your EPICS top level directory
-# This is where EPICS lives at your site.
+# Run "gnumake clean uninstall install" in the application
+# top directory each time this file is changed.
 include $(TOP)/RELEASE_SITE
 
-
-TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
+# =============================================================
+# Define the top of the EPICS tree for your site.
+# We will build some tools/scripts that allow us to
+# change this easily when relocating software.
+# ==============================================================
+#EPICS_SITE_TOP=/nfs/slac/g/lcls/build/epics
+TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/to
 
 # =============================================================
 # Define location of module tree with respect to
 # EPICS_SITE_TOP
 # =============================================================
-EPICS_MODULES=$(EPICS_SITE_TOP)/modules
+EPICS_MODULES=$(EPICS_SITE_TOP)/module
+#EPICS_MODULES=/afs/slac.stanford.edu/g/lcls/vol8/epics/modules
 
 # ==============================================================
 # Define the version of EPICS BASE that you will use
 # =============================================================
-BASE_MODULE_VERSION=base-R3-14-8-2-lcls2
+BASE_MODULE_VERSION=base-R3-14-8-2-lcls3
 
 # ===============================================================
 # Define the version of modules needed by
@@ -41,8 +30,8 @@ BASE_MODULE_VERSION=base-R3-14-8-2-lcls2
 # the appropriate version dependencies
 # http://www-group.slac.stanford.edu/cdsoft/epics/swModules3.htm
 # ===============================================================
-GENSUB_MODULE_VERSION=genSub-R1-6-lcls1
-SEQ_MODULE_VERSION=seq-R2-0-0
+GENSUB_MODULE_VERSION=genSub-R1-6-lcls3
+SEQ_MODULE_VERSION=seq-R2-0-11-lcls1
 
 # ============================================================
 # External Support
@@ -50,12 +39,8 @@ SEQ_MODULE_VERSION=seq-R2-0-0
 GENSUB=$(EPICS_MODULES)/genSub/$(GENSUB_MODULE_VERSION)
 SNCSEQ=$(EPICS_MODULES)/seq/$(SEQ_MODULE_VERSION)
 
-#===============================================================================
-#If using macro substitutions, point MSI at the binary:
-EXTENSIONS_MODULE_VERSION=extensions-R3-14-8-2
-MSI=$(EPICS_SITE_TOP)/extensions/$(EXTENSIONS_MODULE_VERSION)/bin/$(EPICS_HOST_ARCH)/msi
-#===============================================================================
-
 EPICS_BASE=$(EPICS_SITE_TOP)/base/$(BASE_MODULE_VERSION)
-# =================================================================
+
+# End of file
+
 
