@@ -1,7 +1,22 @@
-RELEASE_NOTES
-
-Author:		Zenon M. Szalata	(zms)
-Created:	3/21/2008
-Last revised:	3/21/2008		(zms)
-
-tds3000-R1-0:	Build agains epics-R3-14-9
+#==============================================================
+#
+#  Name: RELEASE_NOTES
+#
+#  Rem:  This file contains the release notes for tds3000
+#        module pertains to the LCLS release format and procedures.
+#        
+#        The author of this software is Andy Foster.
+#
+#  Side:
+#
+#  Auth: 21-Mar-2008, Zenon M. Szalata   (ZMS)
+#  Rev:  dd-mmm-yyyy, Reviewer's Name    (USERNAME)
+#--------------------------------------------------------------
+#  Mod:
+#        27-Apr-2009, K. Luchini         (LUCHINI):
+#          add release tds3000-R2-0-0
+#
+#==============================================================
+#
+tds3000-R2-0-0: Build against rtems-4-9.1
+tds3000-R1-0:	Build against epics-R3-14-9
