@@ -18,5 +18,8 @@
 #
 #==============================================================
 #
+tds3000-R2-1-0:  Built against rtems 4.9.3 and EPICS BASE:
+                 base-R3-14-8-2-lcls5
+
 tds3000-R2-0-0: Build against rtems-4-9.1
 tds3000-R1-0:	Build against epics-R3-14-9

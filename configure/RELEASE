@@ -9,7 +9,7 @@ include $(TOP)/RELEASE_SITE
 # change this easily when relocating software.
 # ==============================================================
 #EPICS_SITE_TOP=/nfs/slac/g/lcls/build/epics
-TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/to
+TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 
 # =============================================================
 # Define location of module tree with respect to
@@ -20,7 +20,7 @@ EPICS_MODULES=$(EPICS_SITE_TOP)/modules
 # ==============================================================
 # Define the version of EPICS BASE that you will use
 # =============================================================
-BASE_MODULE_VERSION=base-R3-14-8-2-lcls3
+BASE_MODULE_VERSION=base-R3-14-8-2-lcls5
 
 # ===============================================================
 # Define the version of modules needed by
@@ -29,8 +29,8 @@ BASE_MODULE_VERSION=base-R3-14-8-2-lcls3
 # the appropriate version dependencies
 # http://www-group.slac.stanford.edu/cdsoft/epics/swModules3.htm
 # ===============================================================
-GENSUB_MODULE_VERSION=genSub-R1-6-lcls3
-SEQ_MODULE_VERSION=seq-R2-0-11-lcls1
+GENSUB_MODULE_VERSION=genSub-R1-6-lcls4
+SEQ_MODULE_VERSION=seq-R2-0-11-lcls2
 
 # ============================================================
 # External Support
