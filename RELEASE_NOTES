@@ -1,5 +1,4 @@
 #==============================================================
-#
 #  Name: RELEASE_NOTES
 #
 #  Rem:  This file contains the release notes for tds3000
@@ -19,10 +18,19 @@
 #          add release tds3000-R2-0-0
 #
 #==============================================================
+<<<<<<< RELEASE_NOTES
+
+tds3999-R2-2-1: modifications to improve presentation of the graph
+		display.  This requires EDM R1-10 or newer.
+		A dummy waveform record is added to allow to paint
+		a horizontal line at y=0.
+		3/22/2010, zms
+=======
 #
 tds3000-R2-2-0:  Built against rtems 4.9.4 and EPICS BASE:
                  base-R3-14-8-2-lcls6
 
+>>>>>>> 1.4
 tds3000-R2-1-0:  Built against rtems 4.9.3 and EPICS BASE:
                  base-R3-14-8-2-lcls5
 

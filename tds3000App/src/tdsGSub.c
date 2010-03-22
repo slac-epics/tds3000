@@ -30,6 +30,16 @@ static char enc[20],bfmt[20],bord[20],ids[80],ptfm[20],xunt[20],yunt[20];
 static double xinc,xzr,ymult,yzr,yof;
 static char chs[16];
 
+static long tdsInit( genSubRecord* p){
+/*------------------------------------------------------------------------------
+ * genSub initialization.  Here we set waveform to +10.0 so that it is not
+ * visible.
+ *----------------------------------------------------------------------------*/
+  int i,npt=p->nova;
+  float* pw=(float*)p->vala;
+  for( i=0; i<npt; i++,pw++) *pw=10.0;
+  return(1);
+}
 static int tdsWPre( char* p,float pos,int dbg){
 /*------------------------------------------------------------------------------
  * parses the preamble string in p and decodes various fields of interest.
@@ -70,13 +80,22 @@ static int tdsWPre( char* p,float pos,int dbg){
 static long tdsWFScale( genSubRecord* p){
 /*------------------------------------------------------------------------------
  * Scale the waveform data based on the scope setup.
+ * Inputs:
+ *  a		number of points in waveform
+ *  b		waveform data
+ *  c		channel enable
+ *  d		trace position
+ *  e		volts per division
+ *  f		debug flag
+ * Outputs:
+ *  vala	normalized scaled waveform data
  *----------------------------------------------------------------------------*/
   int nbt=(*(int*)p->a); char* pr=(char*)p->b; float* pwf=(float*)p->vala;
   int on=(*(int*)p->c); float pos=(*(float*)p->d); float vdiv=(*(float*)p->e);
   int dbg=(*(int*)p->f); int nwin=p->nob,nwout=p->nova;
   int i,n,stat=1; float ftmp;
   char* pc; short* pw;
-/*  printf( "tdsWFScale: nbt=%d\n",nbt); */
+/*  printf( "tdsWFScale: %s: nbt=%d\n",p->name,nbt);*/
   if(nbt>0&&nbt<=nwin) pr[nbt]=0;
   if((i=tdsWPre( pr,pos,dbg))<0) return(0);
   if(vdiv==0.0) vdiv=1.0;
@@ -87,10 +106,12 @@ static long tdsWFScale( genSubRecord* p){
   n=n<0?0:n;
   for( i=0; i<n; i++,pc++,pw++,pwf++){
     if(nbyt==1) ftmp=(*pc); else ftmp=(*pw);
-    if(on) *pwf=((ftmp-yof)*ymult+yzr)/vdiv+pos; else *pwf=0;
+    if(on) *pwf=((ftmp-yof)*ymult+yzr)/vdiv+pos; else *pwf=(10.0);
+/* if(i<10) printf( "tdsWFScale: on=%d, *pwf=%f\n",on,*pwf);*/
   }
   return(stat);
 }
+epicsRegisterFunction( tdsInit);
 epicsRegisterFunction( tdsWFScale);
 epicsRegisterFunction( inWFLen);
 epicsRegisterFunction( inPRLen);

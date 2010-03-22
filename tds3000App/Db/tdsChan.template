@@ -201,6 +201,7 @@ record( waveform, "$(P)R_CH$(N)_WFORM"){
 record( genSub, "$(P)GS_CH$(N)_WFORM"){
   field( DESC, "ch$(N) scaled waveform")
   field( EFLG, "ALWAYS")
+  field( INAM, "tdsInit")
   field( SNAM, "tdsWFScale")
   field( INPA, "$(P)R_CH$(N)_WFORM.NORD")
   field( FTA,  "LONG")

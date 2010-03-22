@@ -675,3 +675,8 @@ record( longout, "$(P)W_DATA_STOP"){
   field( DTYP, "stream")
   field( OUT,  "@tdsCmnd.proto wDStop L$(L) $(A)")
 }
+record( waveform, "$(P)WF:X:AXIS"){
+  field( DESC, "to paint graph x axis")
+  field( NELM, "600")
+  field( FTVL, "CHAR")
+}
