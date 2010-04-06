@@ -18,9 +18,12 @@
 #          add release tds3000-R2-0-0
 #
 #==============================================================
-<<<<<<< RELEASE_NOTES
 
-tds3999-R2-2-1: modifications to improve presentation of the graph
+tds3000-R2-2-2:	modification to fix data handling when horizontal scale
+		is < 10ns/div.
+		4/6/2010, zms
+
+tds3000-R2-2-1: modifications to improve presentation of the graph
 		display.  This requires EDM R1-10 or newer.
 		A dummy waveform record is added to allow to paint
 		a horizontal line at y=0.
@@ -30,7 +33,6 @@ tds3999-R2-2-1: modifications to improve presentation of the graph
 tds3000-R2-2-0:  Built against rtems 4.9.4 and EPICS BASE:
                  base-R3-14-8-2-lcls6
 
->>>>>>> 1.4
 tds3000-R2-1-0:  Built against rtems 4.9.3 and EPICS BASE:
                  base-R3-14-8-2-lcls5
 
