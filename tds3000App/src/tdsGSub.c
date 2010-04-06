@@ -29,16 +29,31 @@ static int nbyt,nbit,len,ptof,chn;
 static char enc[20],bfmt[20],bord[20],ids[80],ptfm[20],xunt[20],yunt[20];
 static double xinc,xzr,ymult,yzr,yof;
 static char chs[16];
+static float hscl[]={   1,   2,   4,  10};	/* units of ns */
+static int hsx0[]={   225, 200, 150,   0};
+static int hsnp[]={    50, 100, 200, 500};
 
 static long tdsInit( genSubRecord* p){
 /*------------------------------------------------------------------------------
  * genSub initialization.  Here we set waveform to +10.0 so that it is not
- * visible.
+ * visible initialy for all channels.
  *----------------------------------------------------------------------------*/
   int i,npt=p->nova;
   float* pw=(float*)p->vala;
   for( i=0; i<npt; i++,pw++) *pw=10.0;
   return(1);
+}
+static void getHSParams( double hs,int* x0,int* np){
+/*------------------------------------------------------------------------------
+ * Returns starting point in x0 and number of points in np where data should be
+ * extracted from the input waveform.  Where hs is the horizontal scale in units
+ * of a second for which x0 and np are obtained.
+ *----------------------------------------------------------------------------*/
+  int ix,h=((hs*1e9)+0.5);
+  for( ix=0; ix<4&&(hscl[ix]!=h); ix++);
+  if(ix>=4) ix=3;
+  *x0=hsx0[ix];
+  *np=hsnp[ix];
 }
 static int tdsWPre( char* p,float pos,int dbg){
 /*------------------------------------------------------------------------------
@@ -87,26 +102,38 @@ static long tdsWFScale( genSubRecord* p){
  *  d		trace position
  *  e		volts per division
  *  f		debug flag
+ *  g		horizontal scale
  * Outputs:
  *  vala	normalized scaled waveform data
+ *  valb	number of data points in vala.
  *----------------------------------------------------------------------------*/
-  int nbt=(*(int*)p->a); char* pr=(char*)p->b; float* pwf=(float*)p->vala;
-  int on=(*(int*)p->c); float pos=(*(float*)p->d); float vdiv=(*(float*)p->e);
-  int dbg=(*(int*)p->f); int nwin=p->nob,nwout=p->nova;
-  int i,n,stat=1; float ftmp;
-  char* pc; short* pw;
+  int nbt=(*(int*)p->a);	char* pr=(char*)p->b;  int on=(*(int*)p->c);
+  float pos=(*(float*)p->d);	float vdiv=(*(float*)p->e);
+  int dbg=(*(int*)p->f);	double hs=(*(double*)p->g);
+  int nwin=p->nob,nwout=p->nova;
+
+  float* pwf=(float*)p->vala;	long* pnp=(long*)p->valb;
+
+  int i,j,x0,np,n,stat=1; float ftmp; char* pc; short* pw;
+
 /*  printf( "tdsWFScale: %s: nbt=%d\n",p->name,nbt);*/
   if(nbt>0&&nbt<=nwin) pr[nbt]=0;
   if((i=tdsWPre( pr,pos,dbg))<0) return(0);
   if(vdiv==0.0) vdiv=1.0;
+  getHSParams( hs,&x0,&np);
   pc=(&pr[i]);
   pw=(short*)&pr[i];
   n=nwin<nwout?nwin:nwout;
   n=len<n?len:n;
   n=n<0?0:n;
-  for( i=0; i<n; i++,pc++,pw++,pwf++){
+  for( i=j=0; i<n; i++,pc++,pw++){
     if(nbyt==1) ftmp=(*pc); else ftmp=(*pw);
-    if(on) *pwf=((ftmp-yof)*ymult+yzr)/vdiv+pos; else *pwf=(10.0);
+    if(on){
+      if(i>=x0&&j<=np){
+	 *pwf=((ftmp-yof)*ymult+yzr)/vdiv+pos;
+	pwf++; j++;}
+    } else *pwf++=(10.0);
+  *pnp=np;
 /* if(i<10) printf( "tdsWFScale: on=%d, *pwf=%f\n",on,*pwf);*/
   }
   return(stat);

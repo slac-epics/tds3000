@@ -87,6 +87,19 @@ record( ai, "$(P)R_TIME_DIV"){
   field( PREC, "2")
   field( EGU,  "s/div")
   field( PINI, "YES")
+  field( FLNK, "$(P)CALC_TIME_NS")
+}
+record( calc, "$(P)CALC_TIME_NS"){
+  field( DESC, "for EDM x-y display")
+  field( CALC, "NINT((A*1000)*1000000)")
+  field( INPA, "$(P)R_TIME_DIV")
+  field( FLNK, "$(P)CALC_TIME_NPT")
+}
+record( calc, "$(P)CALC_TIME_NPT"){
+  field( DESC, "for EDM x-y display")
+#  field( CALC, "(A>=10)?500:((A>=4)?200:((A>=2)?100:50))")
+  field( CALC, "(A>=10)?500:(A>=4)?200:(A>=2)?100:50")
+  field( INPA, "$(P)CALC_TIME_NS")
 }
 record( mbbo, "$(P)W_TIME_DIV_A"){
   field( DESC, "Select Time/Div Magnitude")
