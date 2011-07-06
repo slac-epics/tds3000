@@ -5,9 +5,11 @@ include $(TOP)/RELEASE_SITE
 
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 
-EPICS_MODULES=$(EPICS_SITE_TOP)/modules
+# =============================================================
+# Define location of the modules tree
+# =============================================================
+EPICS_MODULES=$(MODULES_SITE_TOP)
 
-BASE_MODULE_VERSION=base-R3-14-8-2-lcls6
 
 # ===============================================================
 # Define the version of modules needed by
@@ -16,8 +18,8 @@ BASE_MODULE_VERSION=base-R3-14-8-2-lcls6
 # the appropriate version dependencies
 # http://www-group.slac.stanford.edu/cdsoft/epics/swModules3.htm
 # ===============================================================
-GENSUB_MODULE_VERSION=genSub-R1-6-lcls5
-SEQ_MODULE_VERSION=seq-R2-0-11-lcls3
+GENSUB_MODULE_VERSION=genSub-R1-6-lcls6
+SEQ_MODULE_VERSION=seq-R2-0-11-lcls4
 
 # ============================================================
 # External Support
@@ -25,7 +27,11 @@ SEQ_MODULE_VERSION=seq-R2-0-11-lcls3
 GENSUB=$(EPICS_MODULES)/genSub/$(GENSUB_MODULE_VERSION)
 SNCSEQ=$(EPICS_MODULES)/seq/$(SEQ_MODULE_VERSION)
 
-EPICS_BASE=$(EPICS_SITE_TOP)/base/$(BASE_MODULE_VERSION)
+# =================================================================
+# Define EPICS_BASE
+# EPICS_BASE usually appears last so other apps can override stuff:
+# =================================================================
+EPICS_BASE=$(BASE_SITE_TOP)/$(EPICS_BASE_VER)
 
 # End of file
 

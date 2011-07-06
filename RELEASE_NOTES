@@ -19,6 +19,8 @@
 #
 #==============================================================
 
+tds3000-R2-2-3: Modify to build with new EPICS build RELEASE scheme.
+                No functional changes made
 tds3000-R2-2-2:	modification to fix data handling when horizontal scale
 		is < 10ns/div.
 		4/6/2010, zms
