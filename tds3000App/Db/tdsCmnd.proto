@@ -54,7 +54,7 @@ rDBright{out "display:picture:brightness?"; in "%u";}
 wDBright{out "display:picture:brightness %u"; @init{ rDBright;}}
 rDPState{out "display:picture:state?"; in "%{0|1}";}
 wDPState{out "display:picture:state %{OFF|ON}"; @init{ rDPState;}}
-rDIntB{  out "display:intensity:backlight?"; in "%{HIGH|MEDIUM:LOW}";}
+rDIntB{  out "display:intensity:backlight?"; in "%{HIGH|MEDIUM|LOW}";}
 wDIntB{  out "dispplay:intensity:backlight %{HIGH|MEDIUM|LOW}"; @init{ rDIntB;}}
 rDIntWF{ out "display:intensity:waveform?"; in "%u";}
 wDIntWF{ out "display:intensity:waveform %u"; @init{ rDIntWF;}}

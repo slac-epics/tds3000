@@ -100,6 +100,7 @@ record( mbbo, "$(P)W_CH$(N)_CPL") {
 }
 record( ai, "$(P)R_CH$(N)_VDIV") {
   field( DESC, "ChN V/Div")
+  field( SCAN, "1 second")
   field( DTYP, "stream")
   field( INP,  "@tdsChan.proto rChVdiv($(N)) L$(L) $(A)")
   field( PREC, "1")
