@@ -18,6 +18,7 @@
 #          add release tds3000-R2-0-0
 #
 #==============================================================
+tds3000-R2-2-4: Build with Seq version --> seq-R2-1-6_1-0
 
 tds3000-R2-2-3: Modify to build with new EPICS build RELEASE scheme.
                 No functional changes made
