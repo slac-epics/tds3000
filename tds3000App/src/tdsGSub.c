@@ -17,6 +17,7 @@
 #include <registryFunction.h>
 #include "genSubRecord.h"
 #include <epicsExport.h>
+#include <epicsEndian.h>
 
 #define PRLEN	256
 #define WFLEN	10000
@@ -25,7 +26,7 @@ static char str[PRLEN*2];
 
 static long inWFLen(){ return(WFLEN);}
 static long inPRLen(){ return(PRLEN);}
-static int nbyt,nbit,len,ptof,chn;
+static int nbyt,nbit,len,ptof,chn,endian;
 static char enc[20],bfmt[20],bord[20],ids[80],ptfm[20],xunt[20],yunt[20];
 static double xinc,xzr,ymult,yzr,yof;
 static char chs[16];
@@ -71,12 +72,15 @@ static int tdsWPre( char* p,float pos,int dbg){
       printf( "tdsWPre: n=%d, failed to unpack preamble\n",n); return(-1);}
     return(0);
   }
+  // i is the # bytes read from p already. wd reads # of bytes of data
   if((n=sscanf( &p[i],"#%1d",&wd))!=1){
     printf( "tdsWPre: n=%d, failed to get width\n",n);
     return(-1);
   }
+  // i is bytes already read + 1 for the '#' + data length
   i+=2+wd;
   strncpy( chs,&ids[1],3); chs[3]=0; sscanf( chs,"Ch%d",&chn);
+  if(bord[0] == 'L') endian = EPICS_ENDIAN_LITTLE; else endian = EPICS_ENDIAN_BIG;
   if(dbg==2){
     sprintf( str,"nbytes=%d,  nbits=%d\n",nbyt,nbit); l=strlen(str);
     sprintf( &str[l],"encode=%s, bfmt=%s\n",enc,bfmt); l=strlen(str);
@@ -114,7 +118,7 @@ static long tdsWFScale( genSubRecord* p){
 
   float* pwf=(float*)p->vala;	long* pnp=(long*)p->valb;
 
-  int i,j,x0,np,n,stat=1; float ftmp; char* pc; short* pw;
+  int i,j,x0,np,n,stat=1; float ftmp; char* pc; short* pw; unsigned char* puc; unsigned short* puw;
 
 /*  printf( "tdsWFScale: %s: nbt=%d\n",p->name,nbt);*/
   if(nbt>0&&nbt<=nwin) pr[nbt]=0;
@@ -123,18 +127,43 @@ static long tdsWFScale( genSubRecord* p){
   getHSParams( hs,&x0,&np);
   pc=(&pr[i]);
   pw=(short*)&pr[i];
+  puc=(unsigned char*)(&pr[i]);
+  puw=(unsigned short*)&pr[i];
   n=nwin<nwout?nwin:nwout;
   n=len<n?len:n;
   n=n<0?0:n;
-  for( i=j=0; i<n; i++,pc++,pw++){
-    if(nbyt==1) ftmp=(*pc); else ftmp=(*pw);
-    if(on){
-      if(i>=x0&&j<=np){
-	 *pwf=((ftmp-yof)*ymult+yzr)/vdiv+pos;
-	pwf++; j++;}
-    } else *pwf++=(10.0);
-  *pnp=np;
-/* if(i<10) printf( "tdsWFScale: on=%d, *pwf=%f\n",on,*pwf);*/
+  for( i=j=0; i<n; i++,pc++,pw++,puc++,puw++){
+	  if(on)
+	  {
+		  if(nbyt==1)
+		  {
+			  if(bfmt[1]=='I') // format string is RI (signed) or RP (unsigned)
+				  ftmp=(float)(*pc);
+			  else
+				  ftmp=(float)(*puc);
+		  }
+		  else
+		  {
+			  if(endian == EPICS_BYTE_ORDER)
+				  if(bfmt[1]=='I') // format string is RI (signed) or RP (unsigned)
+					  ftmp=(float)(*pw);
+				  else
+					  ftmp=(float)(*puw);
+			  else // swap byte order, being careful about signed/unsigned
+				  if(bfmt[1]=='I')
+					  ftmp=(float)(((short)*(pc++) << 8)| *(++puc)); // might do something cleaner than the ++ here
+				  else
+					  ftmp=(float)(((unsigned short)*puc << 8)| *(++puc));
+		  }
+
+		  if(i>=x0&&j<=np)
+		  {
+			  *pwf=((ftmp-yof)*ymult+yzr)/vdiv+pos;
+			  pwf++; j++;
+		  }
+	  } else *pwf++=(10.0);
+	  *pnp=np;
+	  /* if(i<10) printf( "tdsWFScale: on=%d, *pwf=%f\n",on,*pwf);*/
   }
   return(stat);
 }
