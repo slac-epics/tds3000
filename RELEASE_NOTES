@@ -18,6 +18,9 @@
 #          add release tds3000-R2-0-0
 #
 #==============================================================
+tds3000-R2-2-6: Removed unused record in tds3000App/Db/tdsDiag.db causing invalid PV requests.
+		7/2/2013, sstubbs
+
 tds3000-R2-2-5: Fixed some endian and signed/unsigned problems when using 2 byte data.
 		4/2/2013, gwb 
 

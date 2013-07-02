@@ -11,14 +11,6 @@ record( mbbo, "$(P)debug"){
   field( THST, "3")
   field( VAL, "0")
 }
-record( genSub, "$(P)gsDbgPrint"){
-  field( DESC, "debug print")
-  field( EFLG, "ALWAYS")
-  field( SNAM, "dbgPrint")
-  field( INPA, "$(P)wDataSource")
-  field( FTA,  "CHAR")
-  field( NOA,  "256")
-}
 record( bo, "$(P)doAcquire"){
   field( DESC, "force acquire wfms")
   field( SCAN, "Passive")
