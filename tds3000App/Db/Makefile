@@ -11,6 +11,15 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install)
 # databases, templates, substitutions like this
 DB += tds.db
+CFG+= CONFIG_PROTO
+
+# Install Prototype files
+PROTOS += tdsChan.proto
+PROTOS += tdsCmnd.proto
+PROTOS += tdsCtrl.proto
+PROTOS += tdsDiag.proto
+PROTOS += tdsErr.proto
+
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_TEMPLATE = <templatename>
