@@ -18,6 +18,10 @@
 #          add release tds3000-R2-0-0
 #
 #==============================================================
+#
+tds3000-R2-2-7: Add configuration file in Db directory to
+                to install prototype files.
+
 tds3000-R2-2-6: Removed unused record in tds3000App/Db/tdsDiag.db causing invalid PV requests.
 		7/2/2013, sstubbs
 
