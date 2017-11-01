@@ -200,7 +200,7 @@ record( waveform, "$(P)R_CH$(N)_WFORM"){
   field( FTVL, "CHAR")
   field( FLNK, "$(P)GS_CH$(N)_WFORM")
 }
-record( genSub, "$(P)GS_CH$(N)_WFORM"){
+record( aSub, "$(P)GS_CH$(N)_WFORM"){
   field( DESC, "ch$(N) scaled waveform")
   field( EFLG, "ALWAYS")
   field( INAM, "tdsInit")

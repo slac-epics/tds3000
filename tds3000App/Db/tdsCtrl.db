@@ -19,7 +19,7 @@ record( stringout, "$(P)CMND"){
   field( DESC, "enter a command")
   field( FLNK, "$(P)CMND1")
 }
-record( genSub, "$(P)CMND1"){
+record( aSub, "$(P)CMND1"){
   field( DESC, "forward a command")
   field( SNAM, "command")
   field( EFLG, "ON CHANGE")

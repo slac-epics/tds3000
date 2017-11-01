@@ -1,4 +1,4 @@
-include "genSubRecord.dbd"
+include "aSubRecord.dbd"
 include "asyn.dbd"
 
 registrar( drvAsynIPPortRegisterCommands)

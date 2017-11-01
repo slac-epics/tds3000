@@ -1,5 +1,5 @@
 /* file: tdsGSub.c
- * Collection of genSub subroutines for reprocessing wave form data.
+ * Collection of aSub subroutines for reprocessing wave form data.
  * Usage of inputs/outputs:
  *  inpa	channel preamble string
  *  inpb	channel waveform data
@@ -15,7 +15,7 @@
 #include <sys/time.h>
 #include <dbDefs.h>
 #include <registryFunction.h>
-#include "genSubRecord.h"
+#include "aSubRecord.h"
 #include <epicsExport.h>
 #include <epicsEndian.h>
 
@@ -34,9 +34,9 @@ static float hscl[]={   1,   2,   4,  10};	/* units of ns */
 static int hsx0[]={   225, 200, 150,   0};
 static int hsnp[]={    50, 100, 200, 500};
 
-static long tdsInit( genSubRecord* p){
+static long tdsInit( aSubRecord* p){
 /*------------------------------------------------------------------------------
- * genSub initialization.  Here we set waveform to +10.0 so that it is not
+ * aSub initialization.  Here we set waveform to +10.0 so that it is not
  * visible initialy for all channels.
  *----------------------------------------------------------------------------*/
   int i,npt=p->nova;
@@ -96,7 +96,7 @@ static int tdsWPre( char* p,float pos,int dbg){
   else if( dbg==3){}
   return(i);
 }
-static long tdsWFScale( genSubRecord* p){
+static long tdsWFScale( aSubRecord* p){
 /*------------------------------------------------------------------------------
  * Scale the waveform data based on the scope setup.
  * Inputs:

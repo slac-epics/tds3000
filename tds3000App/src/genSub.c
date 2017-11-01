@@ -1,5 +1,5 @@
 /* file: GenSub.c
- * Collection of genSub subroutines...
+ * Collection of aSub subroutines...
  *----------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
@@ -7,7 +7,7 @@
 #include <sys/time.h>
 #include <dbDefs.h>
 #include <registryFunction.h>
-#include "genSubRecord.h"
+#include "aSubRecord.h"
 #include <epicsExport.h>
 
 #define c_nova_len	60
@@ -18,7 +18,7 @@ static char str[c_novb_len];
 static long outALen(){ return(c_nova_len);}
 static long outBLen(){ return(c_novb_len);}
 
-static long command( genSubRecord* pr){
+static long command( aSubRecord* pr){
 /*------------------------------------------------------------------------------
  * Examine the command pass it to either write/read or write only.
  *----------------------------------------------------------------------------*/
@@ -34,7 +34,7 @@ static long command( genSubRecord* pr){
   }
   return((int)pch);
 }
-static long errMsg( genSubRecord* pr){
+static long errMsg( aSubRecord* pr){
 /*------------------------------------------------------------------------------
  * Reformat the error message from the instrument by adding date/time.
  * NOTE: this routine is not presently used.  The reason is that it is designed
@@ -53,7 +53,7 @@ static long errMsg( genSubRecord* pr){
   strcpy( pa,tstr); strcat( pa," "); strcat( pa,p); /* strcat( pa,"\n"); */
   return(1);
 }
-static long dbgPrint( genSubRecord* pr){
+static long dbgPrint( aSubRecord* pr){
 /*------------------------------------------------------------------------------
  * diagnostic print...
  *----------------------------------------------------------------------------*/
