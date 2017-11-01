@@ -19,6 +19,9 @@
 #
 #==============================================================
 #
+tds3000-R3-0-0: 31-Oct-2017, K. Luchini (luchini):
+                Replace genSub with aSub module from epics base
+
 tds3000-R2-2-7: Add configuration file in Db directory to
                 to install prototype files.
 
