@@ -1,1 +1,13 @@
-RELEASE_SITE .project .cproject
+alh
+archive
+bin
+cfg
+db
+dbd
+display
+lib
+restore
+.project
+.cproject
+RELEASE_SITE
+
