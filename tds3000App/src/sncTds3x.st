@@ -42,41 +42,8 @@ int flg1[4];
 int flg2[4];
 char* fname;
 
-%{
-static int rdFile( char* msg,char* fn){
-/*------------------------------------------------------------------------------
- * read configuration string data from fname file.
- *----------------------------------------------------------------------------*/
-  FILE* fd; char str[32];
-
-  strcpy( str,msg); strcat( str,":rdFile");
-  fd=fopen( fn,"r");
-  if(!fd) printf( "%s:rdFile: failed to open %s\n",msg,fn);
-  else{
-    printf( "%s:rdFile:opened %s\n",msg,fn);
-    fgets( wfRst,SETUP-1,fd); wfRst[SETUP-1]=0;
-printf( "sncTds3x:rdFile:strlen(wfRst)=%d\n",strlen(wfRst));
-    if(ferror( fd)){ perror( str); return(-1);}
-  }
-  return(0);
-}
-static void wtFile( char* msg,char* fn){
-/*------------------------------------------------------------------------------
- * saves a string of data in a file.
- *----------------------------------------------------------------------------*/
-  FILE* fd; int stat;
-
-  fd=fopen( fn,"w");
-  if(!fd) printf( "%s:wtFile: failed to open %s\n",msg,fn);
-  else{
-    setup[SETUP-1]=0;
-    stat=fputs( setup,fd);
-    if(stat==EOF) printf( "%s:wtFile:fputs: failed to write\n",msg);
-    else printf( "%s:wtFile: wrote to %s\n",msg,fn);
-    fclose( fd);
-  }
-}
-}%
+%%static int rdFile( char* msg,char* fn);
+%%static void wtFile( char* msg,char* fn);
 
 ss savRest{
   state init{
@@ -182,3 +149,40 @@ ss doRate{
     when( delay(0.5)){} state doClr
   }
 }
+
+%{
+static int rdFile( char* msg,char* fn){
+/*------------------------------------------------------------------------------
+ * read configuration string data from fname file.
+ *----------------------------------------------------------------------------*/
+  FILE* fd; char str[32];
+
+  strcpy( str,msg); strcat( str,":rdFile");
+  fd=fopen( fn,"r");
+  if(!fd) printf( "%s:rdFile: failed to open %s\n",msg,fn);
+  else{
+    printf( "%s:rdFile:opened %s\n",msg,fn);
+    fgets( wfRst,SETUP-1,fd); wfRst[SETUP-1]=0;
+printf( "sncTds3x:rdFile:strlen(wfRst)=%d\n",strlen(wfRst));
+    if(ferror( fd)){ perror( str); return(-1);}
+  }
+  return(0);
+}
+static void wtFile( char* msg,char* fn){
+/*------------------------------------------------------------------------------
+ * saves a string of data in a file.
+ *----------------------------------------------------------------------------*/
+  FILE* fd; int stat;
+
+  fd=fopen( fn,"w");
+  if(!fd) printf( "%s:wtFile: failed to open %s\n",msg,fn);
+  else{
+    setup[SETUP-1]=0;
+    stat=fputs( setup,fd);
+    if(stat==EOF) printf( "%s:wtFile:fputs: failed to write\n",msg);
+    else printf( "%s:wtFile: wrote to %s\n",msg,fn);
+    fclose( fd);
+  }
+}
+}%
+
