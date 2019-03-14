@@ -19,6 +19,9 @@
 #
 #==============================================================
 #
+R4.0.1: 13-Mar-2019, H. Slepicka (slepicka):
+	Removed duplicated definition of asyn and aSub at dbd file.
+
 R4.0.0: 23-Oct-2018, H. Slepicka (slepicka):
 	Bumped SEQ to R2.2.4-1.1
 	Moved to the Git Workflow
