@@ -19,6 +19,9 @@
 #
 #==============================================================
 #
+R5.0.0: 10-Nov-2017, K. Luchini (luchini):
+        Upgrade seq module to R2.2.4-1.2
+
 R4.0.1: 13-Mar-2019, H. Slepicka (slepicka):
 	Removed duplicated definition of asyn and aSub at dbd file.
 
